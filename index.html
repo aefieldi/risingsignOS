@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Cosmic Operating System · Spiritual Business Skool</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@1,500;1,600;1,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FAF8F4; --cream2:#F5F2EC; --white:#FFFFFF;
+  --navy:#1A1A2E; --navy2:#23233F; --navy3:#12121F; --navy4:#0D0D1A;
+  --mint:#3FBF95; --mintBright:#7EECD4; --mintDeep:#1E8F6C;
+  --viol:#8B5FC7; --violL:#B88CED; --lav:#C5B8E8;
+  --orch:#D97FD9; --pink:#E8A0E8; --gold:#E8C36A;
+  --ink:#1A1A2E; --sub:#5A5A72;
+  --txt:#EDEAF6; --txt2:#B9B4D0; --txt3:#8C87A6;
+  --line:rgba(197,184,232,.16); --line2:rgba(197,184,232,.28);
+  --hl:linear-gradient(90deg,var(--violL),var(--pink),var(--mintBright));
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--navy4);
+  color:var(--txt);
+  font-family:'Outfit',system-ui,sans-serif;
+  font-weight:400;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+#sky{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(900px 620px at 12% -6%, rgba(139,95,199,.34), transparent 62%),
+    radial-gradient(760px 520px at 92% 8%, rgba(217,127,217,.16), transparent 60%),
+    radial-gradient(820px 620px at 78% 92%, rgba(63,191,149,.12), transparent 62%),
+    linear-gradient(180deg,#171730 0%, #14142A 40%, #101022 100%);
+}
+#grid{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(rgba(197,184,232,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(197,184,232,.055) 1px,transparent 1px);
+  background-size:74px 74px;
+  -webkit-mask-image:radial-gradient(1200px 800px at 50% 0%,#000 20%,transparent 85%);
+  mask-image:radial-gradient(1200px 800px at 50% 0%,#000 20%,transparent 85%);
+}
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+.star{position:absolute;border-radius:50%;background:#fff;opacity:.7;animation:tw 4s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.15;transform:scale(.8)}50%{opacity:.9;transform:scale(1.15)}}
+.stage{position:relative;z-index:2}
+
+/* type */
+h1,h2,h3,h4{font-family:'Outfit',sans-serif;font-weight:800;line-height:1.08;margin:0 0 14px;letter-spacing:-.02em}
+h1{font-size:clamp(38px,7vw,74px)}
+h2{font-size:clamp(26px,3.4vw,40px)}
+h3{font-size:clamp(19px,2vw,25px)}
+em.g{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;
+  background:var(--hl);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.06em}
+.kicker{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--pink);margin:0 0 14px}
+.kicker.mint{color:var(--mintBright)}
+.kicker.lav{color:var(--lav)}
+p{margin:0 0 14px;color:var(--txt2)}
+.lead{font-size:clamp(16px,1.6vw,19.5px);color:#CFCBE4;max-width:760px}
+a{color:var(--violL)}
+
+/* layout */
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.section{padding:52px 0 20px;display:none}
+.section.on{display:block;animation:fade .45s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* hero */
+.hero{text-align:center;padding:64px 0 30px}
+.hero .lead{margin:0 auto 26px}
+.badges{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:24px 0 32px}
+.badge{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--txt2);border:1px solid var(--line2);border-radius:999px;padding:10px 20px;background:rgba(255,255,255,.03)}
+.badge b{color:var(--pink);font-weight:400;margin-right:7px}
+
+/* buttons */
+.btn{display:inline-block;cursor:pointer;border:0;font-family:'Outfit',sans-serif;font-weight:700;font-size:16px;
+  color:#fff;padding:16px 34px;border-radius:999px;text-decoration:none;
+  background:linear-gradient(90deg,var(--violL),var(--pink) 52%,var(--mintBright));
+  box-shadow:0 10px 40px rgba(184,140,237,.42);transition:transform .18s ease,box-shadow .18s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 16px 52px rgba(184,140,237,.6)}
+.btn.lg{font-size:19px;padding:20px 46px}
+.btn.ghost{background:rgba(255,255,255,.05);border:1px solid var(--line2);box-shadow:none;color:var(--txt);font-weight:600}
+.btn.ghost:hover{background:rgba(255,255,255,.09);box-shadow:none}
+.btn.sm{font-size:13.5px;padding:10px 20px}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:rgba(16,16,34,.86);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);padding:11px 0}
+.navin{max-width:1120px;margin:0 auto;padding:0 16px;display:flex;gap:8px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.navin::-webkit-scrollbar{display:none}
+.navlogo{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--lav);white-space:nowrap;margin-right:10px;opacity:.8}
+.navtab{white-space:nowrap;cursor:pointer;border:1px solid transparent;background:transparent;color:var(--txt2);
+  font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;padding:9px 16px;border-radius:999px;transition:.18s}
+.navtab:hover{color:#fff;background:rgba(255,255,255,.06)}
+.navtab.on{color:#fff;background:linear-gradient(90deg,rgba(139,95,199,.85),rgba(217,127,217,.85));border-color:rgba(232,160,232,.4)}
+
+/* cards */
+.card{background:linear-gradient(160deg,rgba(255,255,255,.062),rgba(255,255,255,.028));
+  border:1px solid var(--line);border-radius:22px;padding:26px;backdrop-filter:blur(6px)}
+.card.pad{padding:30px 32px}
+.grid{display:grid;gap:18px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+.pathcard{cursor:pointer;text-align:left;transition:.2s;position:relative;overflow:hidden}
+.pathcard:hover{transform:translateY(-4px);border-color:var(--line2);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.pathcard .num{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--mintBright)}
+.pathcard h3{margin:12px 0 8px}
+.pathcard p{font-size:15px;margin-bottom:18px}
+
+/* sign chips */
+.signgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+@media(max-width:820px){.signgrid{grid-template-columns:repeat(3,1fr)}}
+.signchip{cursor:pointer;text-align:center;padding:14px 8px;border-radius:16px;border:1px solid var(--line);
+  background:rgba(255,255,255,.035);transition:.18s}
+.signchip:hover{background:rgba(255,255,255,.08);transform:translateY(-2px)}
+.signchip.on{background:linear-gradient(150deg,rgba(184,140,237,.34),rgba(217,127,217,.22));border-color:rgba(232,160,232,.55);
+  box-shadow:0 0 0 1px rgba(232,160,232,.25),0 10px 30px rgba(139,95,199,.3)}
+.signchip .gly{font-size:22px;color:var(--pink);line-height:1}
+.signchip .nm{font-size:13px;font-weight:600;margin-top:5px;color:var(--txt)}
+.signchip .el{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.12em;color:var(--txt3);text-transform:uppercase}
+
+/* house cards */
+.housecard{border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.035);overflow:hidden;transition:.2s}
+.housecard.open{border-color:rgba(232,160,232,.42);background:rgba(255,255,255,.06)}
+.hhead{display:flex;align-items:center;gap:14px;padding:16px 18px;cursor:pointer}
+.hnum{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;color:var(--navy);
+  background:linear-gradient(140deg,var(--violL),var(--mintBright));width:34px;height:34px;border-radius:10px;
+  display:grid;place-items:center;flex:none}
+.htitle{flex:1;min-width:0}
+.htitle .t{font-weight:700;font-size:15.5px;color:#fff}
+.htitle .s{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)}
+.hsign{font-size:12px;font-weight:700;color:var(--navy);background:rgba(126,236,212,.9);padding:5px 11px;border-radius:999px;flex:none}
+.hcaret{color:var(--txt3);font-size:13px;flex:none;transition:.2s}
+.housecard.open .hcaret{transform:rotate(180deg);color:var(--pink)}
+.hbody{display:none;padding:0 18px 20px;border-top:1px solid var(--line)}
+.housecard.open .hbody{display:block;animation:fade .3s ease both}
+
+/* mode tabs */
+.modes{display:flex;gap:6px;flex-wrap:wrap;margin:16px 0 14px}
+.mode{cursor:pointer;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--txt2);background:rgba(255,255,255,.05);border:1px solid var(--line);padding:7px 12px;border-radius:999px;transition:.15s}
+.mode:hover{color:#fff}
+.mode.on{background:linear-gradient(90deg,var(--viol),var(--orch));color:#fff;border-color:transparent}
+.modebody{font-size:15.5px;color:#E3E0F1;min-height:74px}
+.modebody .q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:#fff;display:block;margin-bottom:8px;line-height:1.4}
+.modebody .sm{font-size:14px;color:var(--txt2);display:block;margin-top:8px}
+
+/* misc */
+.note{border-left:2px solid var(--mint);padding:10px 0 10px 16px;color:var(--txt2);font-size:14.5px;margin:16px 0}
+.disc{font-family:'Space Mono',monospace;font-size:11px;line-height:1.7;color:var(--txt3);letter-spacing:.02em}
+.sectlabel{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mintBright);margin:0 0 10px}
+textarea,input[type=text]{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--line2);border-radius:14px;
+  color:var(--txt);font-family:'Space Mono',monospace;font-size:13px;line-height:1.75;padding:16px;resize:vertical}
+textarea:focus,input:focus{outline:none;border-color:var(--pink);box-shadow:0 0 0 3px rgba(232,160,232,.16)}
+select{background:rgba(255,255,255,.06);border:1px solid var(--line2);color:var(--txt);border-radius:12px;padding:11px 14px;
+  font-family:'Outfit',sans-serif;font-size:14.5px;font-weight:600}
+select:focus{outline:none;border-color:var(--pink)}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{counter-increment:s;position:relative;padding:5px 0 5px 36px;color:var(--txt2);font-size:14.5px}
+.steps li:before{content:counter(s);position:absolute;left:0;top:5px;width:22px;height:22px;border-radius:7px;
+  background:rgba(184,140,237,.22);border:1px solid var(--line2);color:var(--lav);
+  font-family:'Space Mono',monospace;font-size:11px;display:grid;place-items:center}
+.found{margin-top:18px}
+.frow{display:flex;gap:10px;align-items:baseline;padding:6px 0;border-bottom:1px dashed rgba(197,184,232,.12);font-size:14.5px}
+.frow .ic{font-family:'Space Mono',monospace;font-weight:700;width:16px;flex:none}
+.frow.ok .ic{color:var(--mintBright)} .frow.miss .ic{color:var(--txt3)}
+.frow.miss{color:var(--txt3)}
+.chip{display:inline-block;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid var(--line2);border-radius:999px;padding:6px 13px;color:var(--lav);background:rgba(255,255,255,.04);margin:0 7px 7px 0}
+.chip.mint{color:var(--mintBright);border-color:rgba(126,236,212,.35)}
+.chip.gold{color:var(--gold);border-color:rgba(232,195,106,.35)}
+
+/* dashboard */
+.headline{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:clamp(23px,3.1vw,36px);
+  line-height:1.32;color:#fff;margin:0}
+.pcard{border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.04);padding:18px;transition:.2s}
+.pcard:hover{border-color:var(--line2)}
+.pcard .ph{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.pcard .pg{font-size:19px;color:var(--pink)}
+.pcard .pn{font-weight:700;font-size:15px;color:#fff}
+.pcard .pp{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3)}
+.arch{background:linear-gradient(150deg,rgba(139,95,199,.3),rgba(217,127,217,.16) 55%,rgba(126,236,212,.14));
+  border:1px solid rgba(232,160,232,.34);border-radius:22px;padding:28px}
+.arch .an{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:clamp(28px,4vw,44px);
+  background:var(--hl);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.14;margin:6px 0 12px}
+.readsec{padding:18px 0;border-bottom:1px solid var(--line)}
+.readsec:last-child{border-bottom:0}
+.readsec .rl{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mintBright);margin-bottom:7px}
+.readsec .rt{font-size:16px;color:#E7E4F3}
+.meter{display:flex;justify-content:space-between;align-items:center;font-family:'Space Mono',monospace;font-size:11px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);padding:9px 0;border-bottom:1px dashed rgba(197,184,232,.12)}
+.meter b{color:var(--pink);font-weight:700}
+.bar{height:5px;border-radius:99px;background:rgba(255,255,255,.09);overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--violL),var(--mintBright))}
+
+/* cheat sheet */
+.entry{border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.035);margin-bottom:10px;overflow:hidden}
+.entry .eh{padding:15px 18px;cursor:pointer;display:flex;gap:12px;align-items:center}
+.entry .eh .eg{font-size:19px;color:var(--pink);width:26px;flex:none;text-align:center}
+.entry .eh .en{font-weight:700;color:#fff;font-size:15.5px;flex:1}
+.entry .eh .em2{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3)}
+.entry .eb{display:none;padding:0 18px 18px;border-top:1px solid var(--line)}
+.entry.open .eb{display:block;animation:fade .28s ease both}
+.kv{padding:8px 0;border-bottom:1px dashed rgba(197,184,232,.12);font-size:14.5px;color:var(--txt2)}
+.kv:last-child{border-bottom:0}
+.kv b{color:var(--lav);font-weight:600;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;display:block;margin-bottom:3px}
+
+/* toast */
+#toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(24px);z-index:80;opacity:0;
+  background:linear-gradient(90deg,var(--viol),var(--orch));color:#fff;font-weight:600;font-size:14px;
+  padding:13px 24px;border-radius:999px;box-shadow:0 14px 40px rgba(0,0,0,.45);transition:.28s;pointer-events:none}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* cta + footer */
+.trialcta{margin:52px 0 0;text-align:center;border-radius:26px;padding:46px 28px;
+  background:linear-gradient(150deg,rgba(139,95,199,.36),rgba(217,127,217,.2) 50%,rgba(126,236,212,.16));
+  border:1px solid rgba(232,160,232,.3)}
+.trialsub{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--txt3);margin-top:16px}
+.footer{text-align:center;padding:44px 20px 54px;color:var(--txt3);position:relative;z-index:2}
+.footer .fb{font-weight:700;color:#fff;font-size:17px}
+.footer .fb em{font-family:'Cormorant Garamond',serif;font-style:italic;
+  background:var(--hl);-webkit-background-clip:text;background-clip:text;color:transparent}
+.footer .fs{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;margin-top:8px}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="sky"></div><div id="grid"></div><div id="stars"></div>
+<div id="toast"></div>
+
+<div class="stage">
+
+<nav class="nav"><div class="navin">
+  <span class="navlogo">✦ COSMIC OS</span>
+  <button class="navtab on" data-go="home">Home</button>
+  <button class="navtab" data-go="rising">Choose a Rising Sign</button>
+  <button class="navtab" data-go="paste">Paste My Chart</button>
+  <button class="navtab" data-go="dash">My Reading</button>
+  <button class="navtab" data-go="roast">Roast My Planet</button>
+  <button class="navtab" data-go="cheat">Cheat Sheet</button>
+</div></nav>
+
+<!-- HOME -->
+<section class="section on" id="s-home">
+  <div class="wrap hero">
+    <p class="kicker">✦ Spiritual Business Skool ✦</p>
+    <p class="kicker lav">Your Cosmic Operating System</p>
+    <h1>Your Chart, Translated<br><em class="g">Into Business Moves</em></h1>
+    <p class="lead">A funny, oddly accurate astrology decoder for spiritual entrepreneurs. Pick your rising sign or paste your placements, and get the contradictions, the shadow patterns, and the one thing to actually do this week.</p>
+    <div class="badges">
+      <span class="badge"><b>✦</b> No birth data collected</span>
+      <span class="badge"><b>✦</b> 144 house combinations</span>
+      <span class="badge"><b>✦</b> Business translation included</span>
+    </div>
+    <div class="grid g2" style="text-align:left;margin-top:10px">
+      <div class="card pathcard" data-go="rising">
+        <div class="num">QUICK AND FUNNY</div>
+        <h3>I know my rising sign.</h3>
+        <p>See the sign sitting in all twelve of your houses and the very specific contradiction each one creates in your business.</p>
+        <span class="btn sm">Explore My House Contradictions →</span>
+      </div>
+      <div class="card pathcard" data-go="paste">
+        <div class="num">MORE PERSONALIZED</div>
+        <h3>I have my chart placements.</h3>
+        <p>Paste what you copied from Astro-Seek. You get a full spiritual business reading built only from what you actually provide.</p>
+        <span class="btn sm">Paste My Placements →</span>
+      </div>
+    </div>
+    <p class="disc" style="margin-top:30px;max-width:640px;margin-left:auto;margin-right:auto">
+      This is a reflective and symbolic tool, not a professionally calculated chart and not a prediction. The humor comes from recognition, not from fortune telling. Nothing here is medical, legal, or financial advice.
+    </p>
+  </div>
+</section>
+
+<!-- RISING -->
+<section class="section" id="s-rising">
+  <div class="wrap">
+    <p class="kicker">Entry path one</p>
+    <h2>Explore by <em class="g">Rising Sign</em></h2>
+    <p class="lead">Choose your rising sign to see the sign occupying each of your twelve houses. This is a quick, approximate exploration using the Whole Sign house approach.</p>
+    <div class="signgrid" id="signgrid" style="margin:26px 0 8px"></div>
+    <p class="disc">This is for reflection and entertainment, not a professionally calculated birth chart. If you want to use your actual chart, paste your placements in the Paste My Chart section.</p>
+    <div id="risingOut" style="margin-top:26px"></div>
+  </div>
+</section>
+
+<!-- PASTE -->
+<section class="section" id="s-paste">
+  <div class="wrap">
+    <p class="kicker">Entry path two</p>
+    <h2>Paste My <em class="g">Chart</em></h2>
+    <p class="lead">Generate your chart at Astro-Seek, copy the placement information, and paste it below. You do not need to enter any birth information here.</p>
+    <div class="grid g2" style="margin-top:26px;align-items:start">
+      <div class="card">
+        <p class="sectlabel">How to get your placements</p>
+        <ol class="steps">
+          <li>Open the Astro-Seek birth chart calculator.</li>
+          <li>Enter your birth information there, on their site.</li>
+          <li>Generate your chart.</li>
+          <li>Copy the planetary positions and house placements.</li>
+          <li>Paste them into the box beside this.</li>
+          <li>Click Decode My Chart.</li>
+        </ol>
+        <a class="btn sm ghost" style="margin-top:16px" target="_blank" rel="noopener"
+           href="https://horoscopes.astro-seek.com/calculate-birth-chart-horoscope-online">Open Astro-Seek Birth Chart Calculator ↗</a>
+        <p class="note" style="margin-top:20px">Messy is fine. Degrees, retrograde markers, and extra text get ignored. Partial charts still work, you will just get a partial reading, clearly labelled.</p>
+      </div>
+      <div class="card">
+        <p class="sectlabel">Paste your placements</p>
+        <textarea id="pasteBox" rows="14" placeholder="Paste your chart placements here, for example:
+
+Sun in Gemini, 10th house
+Moon in Taurus, 8th house
+Mercury in Gemini, 10th house
+Venus in Scorpio, 2nd house
+Mars in Leo, 11th house
+Jupiter in Sagittarius, 3rd house
+Saturn in Pisces, 6th house
+Ascendant in Libra
+Midheaven in Cancer"></textarea>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+          <button class="btn sm" id="decodeBtn">Decode My Chart ✦</button>
+          <button class="btn sm ghost" id="sampleBtn">Try a sample chart</button>
+          <button class="btn sm ghost" id="clearBtn">Clear</button>
+        </div>
+        <div class="found" id="foundOut"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD -->
+<section class="section" id="s-dash"><div class="wrap" id="dashOut"></div></section>
+
+<!-- ROAST -->
+<section class="section" id="s-roast">
+  <div class="wrap">
+    <p class="kicker">The planetary contradiction engine</p>
+    <h2>Roast My <em class="g">Planet</em></h2>
+    <p class="lead">Pick a planet, a sign, and a house if you know it. Get the contradiction, then the business translation that makes it useful.</p>
+    <div class="card" style="margin-top:24px">
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+        <select id="rPlanet"></select><select id="rSign"></select><select id="rHouse"></select>
+        <button class="btn sm" id="rGo">Roast It ✦</button>
+      </div>
+      <div id="roastOut" style="margin-top:22px"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CHEAT -->
+<section class="section" id="s-cheat">
+  <div class="wrap">
+    <p class="kicker">Reference library</p>
+    <h2>The Cosmic <em class="g">Cheat Sheet</em></h2>
+    <p class="lead">Every sign, house, planet, and piece of chart vocabulary, in plain language plus the business translation. Never assumes you already know astrology.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 14px">
+      <button class="mode on" data-cs="signs">Signs</button>
+      <button class="mode" data-cs="houses">Houses</button>
+      <button class="mode" data-cs="planets">Planets</button>
+      <button class="mode" data-cs="vocab">Chart Vocabulary</button>
+    </div>
+    <input type="text" id="csSearch" placeholder="Search the cheat sheet..." style="margin-bottom:18px">
+    <div id="csOut"></div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="trialcta">
+    <p class="kicker">Build your own artifact like this one</p>
+    <h2>Make this kind of tool <em class="g">yours</em>.</h2>
+    <p class="lead" style="margin:0 auto 22px">Inside Spiritual Business Skool you learn to build interactive artifacts like this one in your own voice, colors, and brand. Your chart is interesting. Your offer is what pays you. Come build your first gem.</p>
+    <a class="btn lg" href="https://www.skool.com/amanda/about" target="_blank" rel="noopener">Start your 7-day free trial →</a>
+    <p class="trialsub">Spiritual Business Skool · cancel anytime</p>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="fb">✦ Spiritual Business <em>Skool</em> ✦</div>
+  <div class="fs">The Woo · The Workflow</div>
+</div>
+
+</div>
+<script>
+/* ============================================================
+   THE COSMIC OPERATING SYSTEM  ·  data layer
+   ============================================================ */
+
+var SIGNS = [
+{n:"Aries",gly:"♈",el:"Fire",mod:"Cardinal",ruler:"Mars",
+ core:"Initiation. The part of you that moves before the plan is finished.",
+ strengths:"Courage, speed, decisiveness, a genuine appetite for the first move.",
+ stress:"Impatience, starting a fifth thing to avoid finishing the second.",
+ gift:"Starting the things other people are still researching.",
+ roast:"You have started nine projects this year and finished the one nobody asked for.",
+ asks:"What is the smallest version I could launch this week?",
+ style:"at full speed, with no map and total confidence.",
+ also:"I made my decision about {topic} in eleven seconds and I am not revisiting it.",
+ spirit:"start things because they are alive, not to prove something.",
+ biz:"fast, direct, and led from the front with an obvious first move.",
+ shadow:"sprint at it, burn out, then decide the whole plan was wrong.",
+ act:"pick the option that scares you slightly and start it today.",
+ jq:"Where am I mistaking speed for clarity?",
+ vis:"direct, high energy, and far better live than heavily edited.",
+ cont:"short, opinionated, hook first, no long windup.",
+ sales:"confident and early. You can ask for the sale before you feel ready.",
+ money:"you price quickly. Check that quickly is not the same as cheaply.",
+ client:"momentum and one unmistakable first move.",
+ purpose:"start the things that need starting"},
+
+{n:"Taurus",gly:"♉",el:"Earth",mod:"Fixed",ruler:"Venus",
+ core:"Stability. The part of you that wants it to feel good and last.",
+ strengths:"Consistency, taste, patience, staying power most people do not have.",
+ stress:"Digging in, calling avoidance patience, refusing a necessary change.",
+ gift:"Making things that feel good and hold their value.",
+ roast:"You have been perfecting the same offer since the last full moon cycle. It was ready three seasons ago.",
+ asks:"What am I keeping because it is comfortable rather than because it works?",
+ style:"slowly, comfortably, and exactly once.",
+ also:"I will be changing my mind about {topic} approximately never.",
+ spirit:"trust that steady is not the same as stuck.",
+ biz:"consistent, sensory, and built to outlast the trend cycle.",
+ shadow:"call avoidance patience and stay somewhere long past its usefulness.",
+ act:"keep the pace, change the one thing you know you have outgrown.",
+ jq:"Where is comfort making the decision for me?",
+ vis:"calm, grounded, and quietly magnetic over time rather than overnight.",
+ cont:"beautiful, useful, evergreen. Repeatable more than reactive.",
+ sales:"unhurried. You build trust in layers, then people buy without pressure.",
+ money:"you like security, so you may undercharge to keep things smooth.",
+ client:"safety, quality, and no sudden movements.",
+ purpose:"build things that last"},
+
+{n:"Gemini",gly:"♊",el:"Air",mod:"Mutable",ruler:"Mercury",
+ core:"Curiosity. The part of you that connects things nobody else connected.",
+ strengths:"Ideas, language, teaching, translating complexity into a sentence.",
+ stress:"Scatter. Nine tabs, four drafts, zero published.",
+ gift:"Turning complicated things into something a person can repeat at dinner.",
+ roast:"You have twelve brilliant ideas and one folder called Untitled Final v3.",
+ asks:"Which single idea deserves my follow through this month?",
+ style:"in six browser tabs at once.",
+ also:"I have three theories about {topic} and a podcast recommendation.",
+ spirit:"let curiosity land somewhere instead of circling forever.",
+ biz:"conversational, quick, and full of ideas people can repeat.",
+ shadow:"start a fresh version instead of finishing the current one.",
+ act:"choose one idea and give it a full week before the next one arrives.",
+ jq:"Which idea have I explained privately but never published?",
+ vis:"talkative, quick, endlessly quotable. You are made for short form.",
+ cont:"prolific and varied. Volume is your friend, editing is your job.",
+ sales:"through conversation. You sell best in the comments and the DMs.",
+ money:"income arrives from several directions, which makes tracking it optional in your mind.",
+ client:"stimulation, novelty, and a reason to keep listening.",
+ purpose:"translate ideas people need"},
+
+{n:"Cancer",gly:"♋",el:"Water",mod:"Cardinal",ruler:"Moon",
+ core:"Care. The part of you that builds the room people feel safe inside.",
+ strengths:"Nurturing, emotional intelligence, loyalty, creating belonging.",
+ stress:"Retreat, taking things personally, protecting yourself out of the room.",
+ gift:"Making people feel held before you have said anything clever.",
+ roast:"You built a beautiful, safe, deeply nurturing community and then hid from the group chat.",
+ asks:"Where am I carrying feelings that were never mine to carry?",
+ style:"protectively, emotionally, and behind a closed door.",
+ also:"I need to feel safe about {topic} before I will even open the tab.",
+ spirit:"care deeply without carrying everyone.",
+ biz:"warm, personal, and built on belonging rather than pressure.",
+ shadow:"treat ordinary feedback as a family emergency.",
+ act:"set one clear boundary so care does not turn into emotional overtime.",
+ jq:"What am I protecting that no longer needs protecting?",
+ vis:"intimate and personal. People feel like they know you, because they do.",
+ cont:"story led, emotionally honest, behind the scenes more than on stage.",
+ sales:"relational. People buy after they feel safe, not after they feel impressed.",
+ money:"your pricing tracks your sense of safety more than your actual value.",
+ client:"to feel personally held, remembered, and not processed.",
+ purpose:"create the safety people cannot find elsewhere"},
+
+{n:"Leo",gly:"♌",el:"Fire",mod:"Fixed",ruler:"Sun",
+ core:"Expression. The part of you that was built to be seen doing the thing.",
+ strengths:"Warmth, presence, generosity, natural leadership on camera and off.",
+ stress:"Over giving and then quietly waiting to be appreciated for it.",
+ gift:"Being the reason someone believes it is possible for them too.",
+ roast:"You do not need credit. You simply need everyone to know it was you.",
+ asks:"Where am I hinting when I could be asking?",
+ style:"generously, dramatically, and with excellent lighting.",
+ also:"I do not need credit for {topic}, I just need it known that it was me.",
+ spirit:"be seen without performing for approval.",
+ biz:"expressive, personality led, and impossible to confuse with anyone else.",
+ shadow:"over give, then wait to be thanked instead of asking.",
+ act:"ask directly for the recognition, the testimonial, or the sale you are hinting at.",
+ jq:"What do I want acknowledged that I have never actually requested?",
+ vis:"born for the front of the room. Video is your unfair advantage.",
+ cont:"bold, warm, personality first. Your face outperforms your graphics.",
+ sales:"charismatic and direct. Enthusiasm is your close.",
+ money:"you spend on beauty and experience, so build the buffer before the upgrade.",
+ client:"to feel special, celebrated, and personally chosen.",
+ purpose:"be visible on purpose"},
+
+{n:"Virgo",gly:"♍",el:"Earth",mod:"Mutable",ruler:"Mercury",
+ core:"Refinement. The part of you that notices the one thing that is off.",
+ strengths:"Precision, service, systems, genuinely useful help.",
+ stress:"Perfectionism dressed as professionalism, editing instead of publishing.",
+ gift:"Making the messy thing usable, teachable, and repeatable.",
+ roast:"The launch is ready. You are on revision eleven of the button color.",
+ asks:"What am I refining instead of releasing?",
+ style:"efficiently, thoroughly, and with one small correction.",
+ also:"{topic} is fine, I only have four notes.",
+ spirit:"let good enough actually be good.",
+ biz:"useful, precise, and full of things people can implement today.",
+ shadow:"polish privately until the moment has quietly passed.",
+ act:"ship it at eighty percent and fix the rest in public.",
+ jq:"What would happen if I published this exactly as it is?",
+ vis:"credible and useful. You win on substance, not spectacle.",
+ cont:"how to, step by step, checklists. Practical beats poetic for you.",
+ sales:"through demonstrated usefulness. Let the free thing prove the paid thing.",
+ money:"you overdeliver, then wonder why the margin is thin.",
+ client:"clarity, order, and to know exactly what happens next.",
+ purpose:"make the useful thing usable"},
+
+{n:"Libra",gly:"♎",el:"Air",mod:"Cardinal",ruler:"Venus",
+ core:"Harmony. The part of you that reads the room before it enters.",
+ strengths:"Taste, diplomacy, fairness, making things beautiful and easy to enter.",
+ stress:"Indecision, agreeableness so complete that nobody knows your position.",
+ gift:"Making excellence feel welcoming instead of intimidating.",
+ roast:"You are approachable, elegant, diplomatic, and you have already noticed that their shoes do not match.",
+ asks:"Where am I prioritizing being liked over being clearly understood?",
+ style:"diplomatically, beautifully, and with a second opinion.",
+ also:"I have noticed three things about {topic} and I will be mentioning none of them.",
+ spirit:"create harmony without abandoning the preference underneath it.",
+ biz:"welcoming, aesthetically coherent, thoughtful, and easy to enter.",
+ shadow:"be so agreeable that nobody can tell what the actual position is.",
+ act:"state one clear, slightly uncomfortable opinion in public this week.",
+ jq:"What position am I softening until it disappears?",
+ vis:"polished and pleasant. Add an edge or people will admire and scroll.",
+ cont:"beautiful, balanced, comparison based. You are excellent at this versus that.",
+ sales:"consultative. You are good at helping people decide, so guide, do not hover.",
+ money:"you discount to keep the peace. The peace is not worth the margin.",
+ client:"a beautiful experience and a decision made easy.",
+ purpose:"make the good thing feel welcoming"},
+
+{n:"Scorpio",gly:"♏",el:"Water",mod:"Fixed",ruler:"Pluto and Mars",
+ core:"Depth. The part of you that goes all the way in or not at all.",
+ strengths:"Focus, intensity, insight, holding what other people cannot hold.",
+ stress:"Control, secrecy, testing people instead of telling them.",
+ gift:"Taking people somewhere they were too scared to go alone.",
+ roast:"They may know your aesthetic, your opinions, and your entire personality, but they will never know what is in your bank account.",
+ asks:"What am I withholding that would actually build trust?",
+ style:"privately, intensely, and on a need to know basis.",
+ also:"I will discuss {topic} in detail once you have known me for four years.",
+ spirit:"find security in self trust rather than control.",
+ biz:"deep, transformational, and built on high trust and real boundaries.",
+ shadow:"hide the details until people are expected to guess.",
+ act:"say the number and the promise out loud. Keep the process private.",
+ jq:"Where am I being mysterious when I mean to be trustworthy?",
+ vis:"magnetic and selective. Less content, more impact.",
+ cont:"depth over frequency. One piece that changes someone beats seven that do not.",
+ sales:"through transformation. Name what changes, not what is included.",
+ money:"you handle money privately and that privacy can become avoidance.",
+ client:"depth, discretion, and someone unshockable.",
+ purpose:"take people through the thing they cannot do alone"},
+
+{n:"Sagittarius",gly:"♐",el:"Fire",mod:"Mutable",ruler:"Jupiter",
+ core:"Expansion. The part of you that always suspects there is more.",
+ strengths:"Vision, honesty, teaching, contagious belief.",
+ stress:"Overpromising, restlessness, skipping the delivery details.",
+ gift:"Handing people a bigger version of what they thought was available.",
+ roast:"Everything is going great. You are currently between three completely different business models.",
+ asks:"What boring middle step am I skipping again?",
+ style:"enthusiastically, philosophically, and possibly from another country.",
+ also:"{topic} is going great, I am simply between three unrelated plans.",
+ spirit:"let freedom include commitment.",
+ biz:"big picture, honest, and full of belief people can borrow.",
+ shadow:"sell the vision and quietly skip the delivery details.",
+ act:"write down the unglamorous middle step and do that one first.",
+ jq:"Where does my freedom need a container in order to work?",
+ vis:"inspiring and quotable. You raise the ceiling in the room.",
+ cont:"perspective shifting, opinionated, teaching from the front.",
+ sales:"through belief. Sell the possibility, then show the path.",
+ money:"income is feast or famine because the plan changes at the summit.",
+ client:"a bigger vision and permission to want it.",
+ purpose:"show people the bigger version"},
+
+{n:"Capricorn",gly:"♑",el:"Earth",mod:"Cardinal",ruler:"Saturn",
+ core:"Mastery. The part of you building something that will still stand later.",
+ strengths:"Strategy, discipline, credibility, long game thinking.",
+ stress:"Working harder rather than asking if the plan still fits.",
+ gift:"Turning a good idea into an actual structure that holds.",
+ roast:"You will enjoy the business once it is fully built. So, later.",
+ asks:"What am I still earning that was already mine?",
+ style:"strategically, seriously, and on a ten year timeline.",
+ also:"I will enjoy {topic} once it is finished, so, later.",
+ spirit:"let worth exist before the achievement.",
+ biz:"credible, structured, and built like it will still be here in five years.",
+ shadow:"work harder instead of asking whether the plan still fits.",
+ act:"cut one task that only exists to prove you are working.",
+ jq:"What am I doing to prove something rather than to build something?",
+ vis:"authoritative. People trust you before they like you, and that is fine.",
+ cont:"frameworks, case studies, receipts. Proof is your medium.",
+ sales:"through credibility and clear terms. No hype required.",
+ money:"you are good with money and slow to enjoy it.",
+ client:"structure, standards, and someone who has clearly done this before.",
+ purpose:"build the structure that holds"},
+
+{n:"Aquarius",gly:"♒",el:"Air",mod:"Fixed",ruler:"Uranus and Saturn",
+ core:"Originality. The part of you allergic to the way everyone else does it.",
+ strengths:"Systems thinking, innovation, seeing the pattern years early.",
+ stress:"Detachment, rebuilding the wheel, refusing the thing that works because it is popular.",
+ gift:"Solving it in a way the niche has not thought of yet.",
+ roast:"Everyone else does it that way, which is precisely why you will not.",
+ asks:"Where is being different costing me being understood?",
+ style:"unusually, independently, and slightly ahead of schedule.",
+ also:"everyone else handles {topic} that way, which is exactly why I will not.",
+ spirit:"belong without dissolving into the group.",
+ biz:"original, systemised, and refreshingly unlike the rest of the niche.",
+ shadow:"reinvent the wheel rather than use the one already rolling.",
+ act:"keep the strange idea, borrow the boring structure.",
+ jq:"Which convention am I resisting purely because it is conventional?",
+ vis:"distinctive and slightly future facing. You attract the early adopters.",
+ cont:"contrarian takes, systems, and the unpopular truth stated calmly.",
+ sales:"through a genuinely different mechanism. Name what makes yours unlike the rest.",
+ money:"you undervalue the innovation because it came easily to you.",
+ client:"to feel part of something that is not like everything else.",
+ purpose:"do it in the way nobody has tried"},
+
+{n:"Pisces",gly:"♓",el:"Water",mod:"Mutable",ruler:"Neptune and Jupiter",
+ core:"Attunement. The part of you that feels it before it is said out loud.",
+ strengths:"Intuition, compassion, imagination, spiritual perception.",
+ stress:"Boundarylessness, escapism, calling drift divine timing.",
+ gift:"Knowing what someone needs before they have language for it.",
+ roast:"Your schedule is less a schedule and more a gentle suggestion from the universe.",
+ asks:"Where does my sensitivity need a container rather than an excuse?",
+ style:"intuitively, dreamily, and on universal time.",
+ also:"{topic} is less a plan and more a feeling I am currently having.",
+ spirit:"honor sensitivity without using it as a reason to abandon structure.",
+ biz:"compassionate, imaginative, and deeply attuned to how people feel.",
+ shadow:"romanticize disorganization and call it divine timing.",
+ act:"set three non negotiable weekly anchors and leave everything else soft.",
+ jq:"What structure would let me be this sensitive and still get paid?",
+ vis:"dreamy and healing. People come for the atmosphere and stay for the depth.",
+ cont:"poetic, visual, felt. You move people more than you inform them.",
+ sales:"through resonance. Describe the feeling on the other side.",
+ money:"you give too much away and call it generosity when it is discomfort.",
+ client:"to feel understood without having to explain themselves.",
+ purpose:"translate what people feel but cannot say"}
+];
+
+var HOUSES = [
+{n:1,t:"Identity and appearance",short:"how I come across",
+ lead:"My entire first impression is run",topic:"how I come across",
+ sp:"Identity asks me to",bz:"My brand works best when it feels",sh:"With my own presence, I can",ac:"For how you present yourself publicly,",
+ jr:"What do people meet before they meet my work?",
+ plain:"How you come across, your natural style, the vibe people get in the first ten seconds.",
+ spirit:"The self you are becoming, and the mask you no longer need.",
+ biz:"Your brand personality, your first impression, your positioning.",
+ flaw:"Managing the impression so carefully that nobody meets the actual person.",
+ refl:"If my brand walked into a room, what would people assume about it?"},
+{n:2,t:"Money and self-worth",short:"my pricing",
+ lead:"My money, my pricing, and my sense of worth are handled",topic:"my pricing",
+ sp:"Worth asks me to",bz:"My offers and prices land when they are",sh:"Around money and worth, I can",ac:"For your pricing and receiving,",
+ jr:"What does my pricing say that my copy does not?",
+ plain:"Money, possessions, resources, and what you believe you are worth.",
+ spirit:"Learning that value is inherent, not earned through output.",
+ biz:"Pricing, income, savings, and the offers that pay you directly.",
+ flaw:"Tying your price to your mood instead of to the outcome you deliver.",
+ refl:"What would I charge if I were not worried about the response?"},
+{n:3,t:"Communication and thinking",short:"my content",
+ lead:"My content, my ideas, and my daily communication run",topic:"my content",
+ sp:"My mind asks me to",bz:"My messaging works when it is",sh:"With my ideas, I can",ac:"For your content and voice,",
+ jr:"Which idea have I explained everywhere except publicly?",
+ plain:"How you think, speak, write, learn, and handle daily communication.",
+ spirit:"Bringing the inner voice and the spoken voice into alignment.",
+ biz:"Content, copywriting, teaching style, social media, short form everything.",
+ flaw:"Talking about the idea in private and never publishing it.",
+ refl:"What am I always explaining in DMs that should be a post?"},
+{n:4,t:"Home, roots, and foundation",short:"my foundation",
+ lead:"My private life and my inner base are held",topic:"my foundation",
+ sp:"Roots ask me to",bz:"My business needs a foundation that is",sh:"At home base, I can",ac:"For your foundations,",
+ jr:"What does my work need from my private life right now?",
+ plain:"Home, family, roots, and the emotional base you operate from.",
+ spirit:"Belonging to yourself first, before belonging to anyone else.",
+ biz:"Your working environment, your back end, the private base the business runs on.",
+ flaw:"Building the business on a foundation you have not repaired.",
+ refl:"Is my base actually supporting me, or am I supporting it?"},
+{n:5,t:"Creativity, romance, and play",short:"my creative work",
+ lead:"My creative work and my play are approached",topic:"my creative work",
+ sp:"Creativity asks me to",bz:"My creative output shines when it is",sh:"With play and creativity, I can",ac:"For your creative practice,",
+ jr:"What would I make if nobody was going to buy it?",
+ plain:"Creativity, joy, romance, children, and everything you do for the love of it.",
+ spirit:"Creating from delight rather than from strategy.",
+ biz:"Your original work, your signature style, the fun that makes the content good.",
+ flaw:"Monetizing the joy so fast that the joy leaves.",
+ refl:"When did my work last feel like play?"},
+{n:6,t:"Work, routines, and health",short:"my schedule",
+ lead:"My routines, systems, and daily work run",topic:"my schedule",
+ sp:"Daily life asks me to",bz:"My systems need to be",sh:"With routines and health, I can",ac:"For your weekly rhythm,",
+ jr:"Which routine is actually running my week?",
+ plain:"Daily routines, work habits, health, service, and the unglamorous middle.",
+ spirit:"Treating ordinary days as the practice rather than the wait.",
+ biz:"Operations, systems, delivery, admin, and your actual capacity.",
+ flaw:"Building a schedule for a version of you that does not exist.",
+ refl:"What would my week look like if it were designed around my real energy?"},
+{n:7,t:"Partnerships and clients",short:"my clients",
+ lead:"My clients, collaborators, and partnerships are managed",topic:"my clients",
+ sp:"Partnership asks me to",bz:"My client relationships work when they are",sh:"In partnership, I can",ac:"For your client relationships,",
+ jr:"What do I expect people to know without me ever saying it?",
+ plain:"One to one relationships, clients, collaborators, and committed partnerships.",
+ spirit:"Meeting others without losing your own outline.",
+ biz:"Your one to one work, your contracts, your collaborations and referrals.",
+ flaw:"Attracting the dynamic you refuse to name out loud.",
+ refl:"What kind of client am I quietly hoping will read my mind?"},
+{n:8,t:"Intimacy, shared money, transformation",short:"the deep work",
+ lead:"Shared money, real depth, and transformation are handled",topic:"the deep work",
+ sp:"Intimacy asks me to",bz:"My deepest work sells when it is",sh:"Around shared resources, I can",ac:"For your transformational work,",
+ jr:"Where am I asking people to trust me with something I have not named?",
+ plain:"Intimacy, other people's money, deep change, and everything private.",
+ spirit:"Letting go of what you are gripping so the next version can arrive.",
+ biz:"High ticket work, investments, affiliate and revenue share, deep transformation.",
+ flaw:"Keeping the terms vague because naming them feels exposing.",
+ refl:"What am I holding onto that is blocking the next level?"},
+{n:9,t:"Beliefs, teaching, and expansion",short:"my philosophy",
+ lead:"My beliefs, my teaching, and my big vision run",topic:"my philosophy",
+ sp:"Meaning asks me to",bz:"My teaching lands when it is",sh:"With my philosophy, I can",ac:"For your teaching and vision,",
+ jr:"What do I actually believe that I have not taught yet?",
+ plain:"Beliefs, philosophy, higher learning, travel, publishing, and teaching.",
+ spirit:"Living the philosophy instead of collecting more of them.",
+ biz:"Your point of view, your signature framework, your courses and your platform.",
+ flaw:"Studying another modality instead of teaching the one you know.",
+ refl:"What is the one belief my whole business rests on?"},
+{n:10,t:"Career and public image",short:"my public image",
+ lead:"My career and my public reputation are built",topic:"my public image",
+ sp:"Leadership asks me to",bz:"My public work becomes powerful when it is",sh:"In public, I can",ac:"For your visibility,",
+ jr:"What do I want to be known for two years from now?",
+ plain:"Career, reputation, public role, and what you are known for.",
+ spirit:"Leading in a way you would still respect in ten years.",
+ biz:"Positioning, authority, visibility, and the thing your name is attached to.",
+ flaw:"Building a reputation for work you do not actually want more of.",
+ refl:"Is my public image selling the work I want to be doing?"},
+{n:11,t:"Community, audience, and future",short:"my community",
+ lead:"My community, my audience, and my future goals are grown",topic:"my community",
+ sp:"Belonging asks me to",bz:"My audience grows when the experience is",sh:"With my people, I can",ac:"For your community,",
+ jr:"Who is already in my corner that I have never publicly thanked?",
+ plain:"Friends, networks, community, causes, and the future you are building toward.",
+ spirit:"Finding your people without becoming a version of them.",
+ biz:"Your membership, your audience, your collaborations and your long game.",
+ flaw:"Serving the group so hard that your own goal quietly disappears.",
+ refl:"Am I building a community or an audience, and which do I actually want?"},
+{n:12,t:"Rest, solitude, and hidden patterns",short:"my inner world",
+ lead:"My rest, my solitude, and my hidden patterns are handled",topic:"my inner world",
+ sp:"Solitude asks me to",bz:"My behind the scenes needs to be",sh:"In private, I can",ac:"For your rest and inner work,",
+ jr:"What am I avoiding that keeps politely reappearing?",
+ plain:"Rest, retreat, the subconscious, and the patterns running underneath.",
+ spirit:"Meeting the part of you that only speaks when everything is quiet.",
+ biz:"Your rest cycles, your creative incubation, and the self sabotage that runs the launch.",
+ flaw:"Calling burnout a season and refusing to change the design.",
+ refl:"What keeps happening right before I self sabotage?"}
+];
+
+/* hand written showcase overrides, house index 0-11 then sign name */
+var OVERRIDE = {
+ "0|Libra":{funny:"I am approachable, elegant, and diplomatic, and I have already noticed that your shoes do not match your outfit.",
+   spirit:"I am learning to create harmony without abandoning my own preferences.",
+   biz:"My brand works best when it feels welcoming, aesthetically coherent, thoughtful, and easy to enter.",
+   shadow:"I can make myself so agreeable that people cannot tell what I actually stand for.",
+   act:"Choose a clear point of view. Diplomacy is a gift, ambiguity is not a marketing strategy.",
+   jr:"Where am I prioritizing being liked over being clearly understood?"},
+ "1|Scorpio":{funny:"You may know my aesthetic, my opinions, and my entire personality, but you will never know what is in my bank account.",
+   spirit:"I am learning that security can come from self trust, not only from control.",
+   biz:"I can build powerful offers around transformation, confidentiality, depth, and high trust relationships.",
+   shadow:"I may hide my prices, my needs, or my desires until people are expected to read my mind.",
+   act:"Make your pricing and payment process obvious, even if the work itself stays private and mysterious.",
+   jr:"What would change if my pricing page were as confident as my presence?"},
+ "5|Pisces":{funny:"My schedule is less a schedule and more a gentle suggestion from the universe.",
+   spirit:"I am learning to honor sensitivity without using it as a reason to abandon structure.",
+   biz:"I need flexible systems, spacious workflows, and routines that support my energy rather than punish it.",
+   shadow:"I can romanticize disorganization and call it intuitive timing.",
+   act:"Create three non negotiable weekly anchors and leave the rest flexible.",
+   jr:"Which three anchors would hold my week without crushing it?"},
+ "9|Cancer":{funny:"My professional brand is emotionally intelligent, and I may need to retreat into my shell after one difficult email.",
+   spirit:"I am learning to lead from care without becoming responsible for everyone's feelings.",
+   biz:"My public work becomes powerful when it creates safety, belonging, nourishment, and emotional trust.",
+   shadow:"I may make my business too personal, or take ordinary feedback as a family emergency.",
+   act:"Build a clear client boundary system so care does not become emotional overextension.",
+   jr:"Where is my care turning into responsibility that was never mine?"},
+ "2|Gemini":{funny:"I have one thought, three follow up thoughts, a relevant podcast, and a completely unrelated but fascinating theory.",
+   spirit:"I am learning that a finished idea helps more people than a brilliant unfinished one.",
+   biz:"I am naturally gifted at teaching, storytelling, and turning complex ideas into content people can repeat.",
+   shadow:"I can turn every new idea into a new offer instead of into a new post.",
+   act:"Build an editorial system before every idea becomes another product.",
+   jr:"Which idea gets my full attention this month, and which ones go in the parking lot?"},
+ "10|Leo":{funny:"I want to serve the community, inspire the collective, and receive appropriate recognition for carrying the group project.",
+   spirit:"I am learning to contribute without needing the contribution to be witnessed.",
+   biz:"I am built for visible leadership, community activation, and charismatic group work.",
+   shadow:"I may pretend I do not want the credit while quietly waiting for it.",
+   act:"Ask for the testimonial, the share, or the shoutout directly. Hinting is not a distribution strategy.",
+   jr:"What recognition am I waiting for that I could simply request?"}
+};
+
+var PLANETS = [
+{k:"Sun",gly:"☉",t:"core self and purpose",
+ rep:"Your identity, your vitality, the thing you are actually here to do.",
+ roast:"My whole identity is run",biz:"Your core positioning works when it is",
+ area:"who you are known as",flaw:"Building a business that impresses people you do not even like.",
+ fix:"Point the business at the thing that genuinely lights you up. It shows on camera."},
+{k:"Moon",gly:"☽",t:"emotional needs and safety",
+ rep:"What you need in order to feel safe, and how you self soothe when you do not.",
+ roast:"My emotional needs are handled",biz:"Your sustainable pace and delivery model should feel",
+ area:"how you stay well while working",flaw:"Designing a business your nervous system cannot actually live inside.",
+ fix:"Design the schedule around your real emotional needs, not your aspirational ones."},
+{k:"Mercury",gly:"☿",t:"thinking and communication",
+ rep:"How you think, write, teach, sell in words, and process information.",
+ roast:"My thinking and messaging run",biz:"Your content and teaching work when they are",
+ area:"your content and copy",flaw:"Overcomplicating the message until only you understand the offer.",
+ fix:"Say the offer in one sentence a tired person could repeat correctly."},
+{k:"Venus",gly:"♀",t:"values, beauty, and money",
+ rep:"What you find valuable, how you attract, and your relationship with receiving.",
+ roast:"My brand, my taste, and my money are managed",biz:"Your offers and your aesthetic become magnetic when they are",
+ area:"your pricing and your brand feel",flaw:"Making it beautiful instead of making it clear.",
+ fix:"Keep the beauty, add the price and the promise in plain language."},
+{k:"Mars",gly:"♂",t:"drive and action",
+ rep:"How you go after things, how you fight, and how you burn out.",
+ roast:"My drive and my follow through operate",biz:"Your launches and your outreach work when they are",
+ area:"how you launch and sell",flaw:"Confusing motion with progress, then resting only when ill.",
+ fix:"Choose one aggressive action per week and let the rest be maintenance."},
+{k:"Jupiter",gly:"♃",t:"growth and belief",
+ rep:"Where things expand easily for you, and where you overestimate.",
+ roast:"My growth and my optimism run",biz:"Your growth comes fastest when your work is",
+ area:"where growth comes easily",flaw:"Saying yes to more before the current thing is finished.",
+ fix:"Grow one channel to boredom before adding the next."},
+{k:"Saturn",gly:"♄",t:"structure and mastery",
+ rep:"Where you feel tested, and where you build genuine, lasting authority.",
+ roast:"My structure and my discipline operate",biz:"Your authority becomes real when your work is",
+ area:"where mastery is being built",flaw:"Believing you need one more qualification before you are allowed.",
+ fix:"Teach from where you are and let the mastery build in public."},
+{k:"Uranus",gly:"♅",t:"disruption and originality",
+ rep:"Where you break the rules and where sudden change tends to arrive.",
+ roast:"My innovation and my rule breaking happen",biz:"Your differentiation lands when your approach is",
+ area:"what makes you unlike the niche",flaw:"Rebuilding everything the moment it starts working.",
+ fix:"Keep the weird mechanism, stabilize the delivery around it."},
+{k:"Neptune",gly:"♆",t:"intuition and imagination",
+ rep:"Where you are inspired, and where you are prone to fog.",
+ roast:"My intuition and my imagination flow",biz:"Your spiritual work translates when it is",
+ area:"your intuitive gifts",flaw:"Describing the magic so poetically that nobody knows what they get.",
+ fix:"Keep the mystery in the work, remove it from the sales page."},
+{k:"Pluto",gly:"♇",t:"power and transformation",
+ rep:"Where you are being rebuilt, and where your real power sits.",
+ roast:"My power and my transformation operate",biz:"Your deepest work becomes potent when it is",
+ area:"where you have real power",flaw:"Controlling the outcome so tightly that nothing can grow.",
+ fix:"Name the transformation you actually cause, then charge for that."},
+{k:"North Node",gly:"☊",t:"growth direction",
+ rep:"The unfamiliar direction that grows you, even when it feels awkward.",
+ roast:"My growth edge is approached",biz:"Your next chapter opens when you allow your work to be",
+ area:"your growth edge",flaw:"Returning to what is easy and calling it alignment.",
+ fix:"Do the awkward version this quarter. That is the whole assignment."},
+{k:"South Node",gly:"☋",t:"comfort zone and old mastery",
+ rep:"What you are already excellent at, and what you can over rely on.",
+ roast:"My comfort zone is defended",biz:"This is the skill you can already deliver in your sleep, delivered",
+ area:"your default setting",flaw:"Repeating the old strength because it is safe rather than because it is right.",
+ fix:"Use this as the foundation, not as the whole business."},
+{k:"Chiron",gly:"⚷",t:"the wound that becomes the work",
+ rep:"Where it hurt, and where you now help others the most.",
+ roast:"My tender spot is managed",biz:"Your most resonant work comes from this exact place when you keep it",
+ area:"the wound you now serve from",flaw:"Teaching from the wound before it has healed enough to hold others.",
+ fix:"Share the scar, not the open wound. Your story is a bridge, not a therapy session."},
+{k:"Lilith",gly:"⚸",t:"the unapologetic self",
+ rep:"The part of you that refuses to be palatable.",
+ roast:"My refusal to be palatable expresses itself",biz:"Your edge becomes an asset when you let your work be",
+ area:"your unapologetic edge",flaw:"Suppressing the most magnetic part of you to stay marketable.",
+ fix:"Put ten percent more of this in your content and watch who arrives."},
+{k:"Rising",gly:"↑",t:"first impression and approach",
+ rep:"The doorway to your whole chart, and what people meet first.",
+ roast:"My first impression is run",biz:"Your brand personality works best when it is",
+ area:"your first impression",flaw:"Polishing the doorway until nobody can find the door.",
+ fix:"Let the packaging match the person. It converts better than perfection."},
+{k:"Midheaven",gly:"MC",t:"public role and reputation",
+ rep:"Your public role, your career direction, what you become known for.",
+ roast:"My public reputation is built",biz:"Your public positioning becomes powerful when it is",
+ area:"what you are known for",flaw:"Becoming known for the work you happened to start with.",
+ fix:"Decide what you want to be known for, then publish only in that direction for ninety days."}
+];
+
+var ARCHETYPES = [
+{n:"The Magnetic Mystic",el:"Water",why:"Water is loud in your chart, so people feel you before they understand you. Your job is to keep the depth and add the clarity."},
+{n:"The Elegant Strategist",el:"Air",why:"Air dominates, so you think in systems and language. You make complicated things feel simple and beautiful."},
+{n:"The Sacred Systems Builder",el:"Earth",why:"Earth leads your chart, so you turn inspiration into something people can actually follow and finish."},
+{n:"The Cosmic Translator",el:"Fire",why:"Fire runs your chart, so you carry belief into rooms that had run out of it, and people move because of you."},
+{n:"The Soft Power CEO",el:"Cardinal",why:"Cardinal energy is strong, so you start and lead naturally. You do not need permission, you need a finish line."},
+{n:"The Transformational Contrarian",el:"Fixed",why:"Fixed energy is strong, so you go deep and stay. Your edge is conviction, your risk is refusing to update."},
+{n:"The Intuitive Brand Architect",el:"Mutable",why:"Mutable energy is strong, so you adapt fast and read the room. Your edge is range, your risk is scatter."}
+];
+
+var VOCAB = [
+{k:"Ascendant (Rising sign)",v:"The sign on the eastern horizon when you were born. It sets the whole house structure and describes the first impression you make. In business, it is your brand personality."},
+{k:"Midheaven (MC)",v:"The highest point of the chart. It describes your public role and career direction. In business, it is what you become known for."},
+{k:"Descendant",v:"Opposite the Ascendant. It describes what you seek in others and attract in partnership. In business, it is your client and collaborator pattern."},
+{k:"Imum Coeli (IC)",v:"The lowest point of the chart, opposite the Midheaven. Home, roots, and your private emotional base. In business, it is the foundation everything else stands on."},
+{k:"House",v:"One of twelve life areas the chart is divided into. The signs describe how, the houses describe where."},
+{k:"Whole Sign houses",v:"A simple house system where each house is one entire sign, starting from your rising sign. It is what this tool uses in rising sign mode."},
+{k:"Conjunction",v:"Two planets sitting close together. Their energies blend and amplify, for better and for messier."},
+{k:"Opposition",v:"Two planets across from each other. A tug of war that resolves through balance rather than choosing a side."},
+{k:"Square",v:"A tense ninety degree angle. Friction that produces growth, usually the hard way, usually the useful way."},
+{k:"Trine",v:"An easy angle. Natural talent that flows so freely you may not notice it is a talent."},
+{k:"Sextile",v:"A supportive angle. Opportunity that shows up if you take the first step toward it."},
+{k:"Retrograde",v:"A planet appearing to move backward from Earth. It suggests the energy runs inward and gets processed internally first. It is not a punishment."},
+{k:"Element",v:"Fire, Earth, Air, or Water. Fire acts, Earth builds, Air thinks, Water feels."},
+{k:"Modality",v:"Cardinal, Fixed, or Mutable. Cardinal starts, Fixed sustains, Mutable adapts."},
+{k:"Ruler",v:"The planet that governs a sign. If you know the sign on a house, its ruler tells you where that area of life gets steered."},
+{k:"Stellium",v:"Three or more planets in one sign or house. That area of life is very loud and usually where your work concentrates."}
+];
+
+var FOCUSES = [
+{k:"brand",n:"Brand identity",em:["Rising","Sun","Venus"],note:"Your brand personality lives in your rising sign and Venus. Make the packaging match the person."},
+{k:"visibility",n:"Visibility",em:["Rising","Sun","Midheaven"],note:"Visibility is a rising sign, Sun, and Midheaven conversation. Publish in the direction you want to be known for."},
+{k:"content",n:"Content creation",em:["Mercury","Sun","Rising"],note:"Content is Mercury's department. Your natural format is usually the one you avoid because it feels too easy."},
+{k:"sales",n:"Sales",em:["Mars","Venus","Mercury"],note:"Selling is Mars asking and Venus making it feel good. If you are not asking, no amount of aesthetics will fix it."},
+{k:"pricing",n:"Pricing",em:["Venus","Saturn","Moon"],note:"Pricing is Venus meeting Saturn. Set the number using logic, deliver it using warmth."},
+{k:"money",n:"Money",em:["Venus","Jupiter","Saturn"],note:"Money patterns show in Venus, Jupiter, and Saturn. One of them is generous, one is cautious, and they are arguing."},
+{k:"audience",n:"Audience building",em:["Jupiter","Mercury","Sun"],note:"Audience growth follows Jupiter and Mercury. Pick one channel and get boringly consistent there."},
+{k:"client",n:"Client experience",em:["Moon","Venus","Rising"],note:"Client experience is a Moon question. People remember how safe they felt more than what was included."},
+{k:"leadership",n:"Leadership",em:["Sun","Saturn","Midheaven"],note:"Leadership is Sun plus Saturn. Presence gets attention, structure keeps it."},
+{k:"productivity",n:"Productivity",em:["Mars","Saturn","Mercury"],note:"Productivity is Mars and Saturn. Your issue is rarely effort, it is usually direction."},
+{k:"rest",n:"Rest",em:["Moon","Neptune","Saturn"],note:"Rest is the Moon's territory. Schedule it like a client call or it will be taken from you by force."},
+{k:"creative",n:"Creative process",em:["Venus","Neptune","Sun"],note:"Creativity runs through Venus and Neptune. Protect the unmonetized creative time, it feeds everything else."},
+{k:"offer",n:"Offer design",em:["Saturn","Mercury","Venus"],note:"Offer design is Saturn making it real and Mercury making it understandable."},
+{k:"boundaries",n:"Boundaries",em:["Saturn","Mars","Moon"],note:"Boundaries are Saturn plus Mars. A boundary you cannot say out loud is a preference, not a boundary."},
+{k:"purpose",n:"Purpose",em:["Sun","North Node","Midheaven"],note:"Purpose sits between your Sun and your North Node. One is who you are, the other is where you are going."}
+];
+/* ============================================================
+   engine + interactions
+   ============================================================ */
+var STATE = {rising:null, placements:[], cusps:null, focus:"", mode:"funny", section:"home", source:null};
+
+function $(s,r){return (r||document).querySelector(s)}
+function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))}
+function esc(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function cap(t){return t.charAt(0).toUpperCase()+t.slice(1)}
+function signIdx(name){for(var i=0;i<SIGNS.length;i++){if(SIGNS[i].n.toLowerCase()===String(name).toLowerCase())return i}return -1}
+function planetDef(k){for(var i=0;i<PLANETS.length;i++){if(PLANETS[i].k===k)return PLANETS[i]}return null}
+
+/* stars */
+(function(){
+  var box=$("#stars"),f=document.createDocumentFragment(),i,s;
+  for(i=0;i<130;i++){
+    s=document.createElement("span");s.className="star";
+    var sz=Math.random()*2.2+0.7;
+    s.style.width=sz+"px";s.style.height=sz+"px";
+    s.style.left=(Math.random()*100)+"%";s.style.top=(Math.random()*100)+"%";
+    s.style.animationDelay=(Math.random()*4)+"s";
+    s.style.opacity=(0.25+Math.random()*0.6);
+    if(i%9===0)s.style.background="#E8A0E8";
+    if(i%13===0)s.style.background="#7EECD4";
+    f.appendChild(s);
+  }
+  box.appendChild(f);
+})();
+
+function toast(msg){var t=$("#toast");t.textContent=msg;t.classList.add("on");setTimeout(function(){t.classList.remove("on")},1900)}
+function copyText(txt){
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){toast("Copied ✦")},fallback)}
+  else fallback();
+  function fallback(){
+    var ta=document.createElement("textarea");ta.value=txt;ta.style.position="fixed";ta.style.opacity="0";
+    document.body.appendChild(ta);ta.select();try{document.execCommand("copy");toast("Copied ✦")}catch(e){toast("Select and copy manually")}
+    document.body.removeChild(ta);
+  }
+}
+
+/* ---------- interpretation composition ---------- */
+function houseSignFor(risingIndex,houseNum){return (risingIndex+houseNum-1)%12}
+
+/* ---------- the 144 ----------
+   FUNNY[houseIndex 0-11][signIndex 0-11], sign order Aries through Pisces.
+   Every single sign in every single house, written out. No templates. */
+var FUNNY = [
+/* H1 identity and appearance */
+["I entered the room before I decided what I was going to say, and honestly it went great.",
+ "I move at one speed, I dress for comfort, and no, I will not be rushing to that.",
+ "I am a slightly different person depending on who I am talking to, and all of them are me.",
+ "I look soft and approachable, which is why strangers tell me about their divorce in the checkout line.",
+ "I did not plan to be the center of attention. I simply dressed for it, arrived for it, and accepted it.",
+ "I look calm and put together because I already worried about all of this at four in the morning.",
+ "I am approachable, elegant, and diplomatic, and I have already noticed that your shoes do not match your outfit.",
+ "People keep saying I am intense. I have not said anything yet.",
+ "I arrive with a story, a strong opinion, and absolutely no idea what time it is.",
+ "Strangers assume I am the manager. I am not. I have simply been standing here with excellent posture.",
+ "I would love to blend in, which is exactly why I chose this outfit, this haircut, and this niche opinion.",
+ "I do not really have a first impression. I have a soft blur that people later describe as lovely but hard to explain."],
+/* H2 money and self-worth */
+["I make money fast, spend it faster, and consider that a closed loop.",
+ "I do not chase money. I slowly accumulate it, and then I buy very good sheets.",
+ "I have four income streams, three of which I have not mentioned to anyone, including myself.",
+ "I need a savings account the way other people need a hug, and for exactly the same reason.",
+ "I am extremely responsible with money, except when something is beautiful.",
+ "I have a spreadsheet for my spreadsheets and I still feel behind.",
+ "I will split the bill fairly, aesthetically, and with a faint resentment nobody will ever detect.",
+ "You may know my aesthetic, my opinions, and my entire personality, but you will never know what is in my bank account.",
+ "Money is energy, abundance is a mindset, and I genuinely do not know what I spent last month.",
+ "I have a retirement plan, a backup plan, and a quiet suspicion that both are insufficient.",
+ "I have unconventional beliefs about money, which is a generous way of saying my pricing makes no sense.",
+ "My pricing is intuitive, which mostly means I charge based on how much I like you."],
+/* H3 communication and thinking */
+["I said it, I meant it, and I am already regretting the delivery but not the content.",
+ "I will explain my position once, slowly, and I will not be revisiting it.",
+ "I have one thought, three follow up thoughts, a relevant podcast, and a completely unrelated but fascinating theory.",
+ "I remember every conversation, including the tone, the pause, and what you were wearing.",
+ "I do not send messages. I make announcements.",
+ "I rewrote that text four times to make it sound casual.",
+ "I softened that so thoroughly that nobody realized it was a complaint.",
+ "I asked one gentle question and now I know everything about your childhood.",
+ "I was asked for one sentence, so naturally I am giving you a TED Talk, three theories, and a story from another country.",
+ "I do not do small talk. I do agendas.",
+ "I explained it perfectly and everyone looked at me as though I had invented a new language.",
+ "I communicate mostly through vibes, voice notes, and a link sent with no context."],
+/* H4 home and family */
+["My home is a launch pad rather than a nest, and there is a half assembled shelf to prove it.",
+ "My home is a temple of snacks, blankets, and one chair nobody else is allowed to sit in.",
+ "I have lived in six places and referred to every single one of them as temporary.",
+ "My home is my nervous system with a doorbell.",
+ "My living room has lighting, presence, and a slightly theatrical entrance.",
+ "I relax by reorganizing a drawer that was already completely fine.",
+ "My home is beautiful, balanced, and one mismatched cushion away from a personal crisis.",
+ "You may come to my house. You may not open that cupboard.",
+ "Home is wherever the suitcase is, which is why the suitcase is now technically furniture.",
+ "My childhood home had emotional warmth, and it also had the atmosphere of a municipal office.",
+ "My family is unconventional, which is a polite word for a group chat that requires context.",
+ "My home has to feel right, which is why I have changed the lighting nine times this year."],
+/* H5 romance, pleasure, creativity */
+["I fall in love immediately, completely, and for approximately eleven days.",
+ "My idea of romance is the same restaurant, the same table, and the same person, forever.",
+ "I flirt through information. Here is an article that made me think of you.",
+ "I do not date casually. I date and immediately start imagining the holidays.",
+ "I would like to be adored, and I would like it stated out loud, in complete sentences.",
+ "My love language is fixing something you did not ask me to fix.",
+ "I love romance, candlelight, and being asked to choose the restaurant so I can quietly panic.",
+ "I do not get crushes. I open investigations.",
+ "I want passion, adventure, and the ability to leave the country at short notice.",
+ "I approach dating like a hiring process, and yes, there is a probation period.",
+ "I want romance, but not in a conventional way, and preferably with someone who respects my need to send them unusual memes.",
+ "I fell in love with the potential, the soundtrack, and a version of you I largely invented."],
+/* H6 work, routines, health */
+["My routine is extremely consistent for about four days.",
+ "I have a beautiful morning routine and it takes three hours.",
+ "I have twelve tabs open, four projects running, and one task actually finished.",
+ "My productivity depends entirely on how I feel, which is unfortunate for my calendar.",
+ "I will happily do the boring task, but it needs a name and a color.",
+ "I have optimized my system so thoroughly that maintaining the system is now my full time job.",
+ "I cannot work in an ugly room and I have stopped apologizing for it.",
+ "I do not work in bursts. I disappear for nine hours and emerge with the entire thing finished.",
+ "I work best under a deadline, ideally one that is already slightly on fire.",
+ "I have scheduled rest. It is on Thursday. From two until three.",
+ "My schedule is unconventional, which is why I am at my most brilliant at eleven at night on a Sunday.",
+ "My schedule is less a schedule and more a gentle suggestion from the universe."],
+/* H7 partnerships */
+["I want a peaceful relationship, preferably with someone direct, competitive, and occasionally ready to fight a parking ticket.",
+ "I want a partner who is steady, loyal, and willing to eat the same dinner every week without commentary.",
+ "I need a partner who can hold two conversations at once and forgive me for starting both.",
+ "I attract people who need looking after, and then I am genuinely surprised that I am looking after them.",
+ "I want a partner who is impressive, warm, and comfortable being slightly less the main character.",
+ "I want a partner I can improve, which is a sentence I should probably examine.",
+ "I need a partner, a co-founder, and someone to make the decision I have already made.",
+ "I do not want a relationship. I want a merger, with full disclosure and no exit clause.",
+ "I want deep commitment and total freedom, ideally in two different countries.",
+ "I take relationships extremely seriously, which is why I have been evaluating this one since 2019.",
+ "I want a partnership that looks nothing like anyone else's, and I would like that noted.",
+ "I merge with people so quickly that I occasionally have to check which opinions are actually mine."],
+/* H8 intimacy, shared money, transformation */
+["I would like to transform, quickly, and preferably before lunch.",
+ "I am willing to merge souls, finances, and trauma, but please do not touch my snacks or change the sheets.",
+ "I process deep emotional material by explaining it to three people and calling that healing.",
+ "I bond deeply, permanently, and with an excellent memory for who was there.",
+ "I will be vulnerable, but it will be well lit and very slightly performed.",
+ "I have analyzed my trauma thoroughly and I would now like a certificate.",
+ "Let us discuss our shared finances calmly, fairly, and then never again.",
+ "I am completely comfortable in the dark. It is small talk that terrifies me.",
+ "I heal by leaving the country and calling it perspective.",
+ "My inner work has milestones, deliverables, and a quarterly review.",
+ "I detach from intense emotion by describing it as a fascinating human pattern.",
+ "I dissolve into other people's feelings and then wonder why I am so tired."],
+/* H9 travel, beliefs, higher learning */
+["I booked the flight first and researched the country from the airport.",
+ "I travel to the same place, stay in the same hotel, and consider this adventurous.",
+ "I have several philosophies, and they are currently arguing in a group chat.",
+ "I love travel, and I also miss my own bed from inside the taxi.",
+ "I did not go on a trip. I had an era.",
+ "I have a color coded itinerary and a contingency plan for the itinerary.",
+ "I choose destinations based on how they will look, and I am at peace with that.",
+ "I do not do tourism. I do immersion, obsession, and one extremely intense book.",
+ "I have researched every religion, visited seven countries, and I am still not emotionally available for a single final answer.",
+ "I will get the qualification, the certification, and the second certification nobody asked for.",
+ "My belief system is a personally assembled collection that would horrify a purist.",
+ "I do not so much choose my beliefs as absorb them from whatever I am currently reading."],
+/* H10 career and public image */
+["I want to be known as the person who did it first, not the person who did it carefully.",
+ "I am building slowly, sustainably, and with the quiet confidence of someone who will still be here in ten years.",
+ "My career is three careers in a coat.",
+ "My professional brand is emotionally intelligent, and I may need to retreat into my shell after one difficult email.",
+ "I would like to be known, celebrated, and quoted, and I have made peace with saying that out loud.",
+ "I am the person everyone relies on and nobody remembers to thank, and yes, I keep a mental list.",
+ "My public image is beautifully balanced and I am still deciding what I actually stand for.",
+ "I want influence, not attention, and there is an enormous difference which I will not be explaining.",
+ "My career is a series of leaps that only look strategic in hindsight.",
+ "I have been quietly building this for years and I would like everyone to notice at precisely the right moment.",
+ "I am doing something nobody has a job title for, which makes family gatherings interesting.",
+ "My career is whatever I am currently being called to, which is difficult to fit on a business card."],
+/* H11 friends, networks, future goals */
+["I start the group. I do not run the group.",
+ "I have had the same four friends since 2009 and applications are closed.",
+ "I know everybody and I am close to nobody, and this arrangement suits me perfectly.",
+ "My friends are my family, and I will be checking in on all of them at eleven at night.",
+ "I want to serve the community, inspire the collective, and receive appropriate recognition for carrying the group project.",
+ "I am the friend who organizes the trip, books the trip, and is quietly furious during the trip.",
+ "I have a wide, harmonious network and I am exhausted by every part of it.",
+ "I have a small circle. Entry is by invitation, and there is a vetting process.",
+ "I collect people from every country and then forget to text all of them.",
+ "I network with intention, which is a professional way of saying I do not mingle.",
+ "I love humanity as a concept and require significant time away from individual humans.",
+ "I am deeply connected to my community and I have not replied to anyone since Tuesday."],
+/* H12 subconscious, solitude, hidden patterns */
+["My private anger is beautifully contained and comes out almost exclusively in traffic.",
+ "I self soothe with food, softness, and the belief that the problem will resolve itself if I lie down.",
+ "My anxiety talks. Constantly. In several voices.",
+ "I feel everything privately and then act surprised when it all arrives at once.",
+ "Behind the scenes I need an enormous amount of reassurance, and I would rather you did not know that.",
+ "Nobody knows I am anxious because I have hidden the anxiety inside a highly efficient system.",
+ "In private I have very strong opinions about people I have been extremely gracious to.",
+ "My inner world is a locked room. I built it, I furnished it, and I know exactly where the key is.",
+ "I escape my feelings by planning something enormous and calling it growth.",
+ "My private fear is that if I stop achieving there is nothing underneath. Anyway, back to work.",
+ "I retreat so thoroughly that people assume I have moved abroad.",
+ "My inner life is oceanic, infinite, and completely inaccessible to me before coffee."]
+];
+
+function houseInterp(hIdx,sIdx){
+  var H=HOUSES[hIdx],S=SIGNS[sIdx],o=OVERRIDE[hIdx+"|"+S.n];
+  var hand=(FUNNY[hIdx]&&FUNNY[hIdx][sIdx])?FUNNY[hIdx][sIdx]:null;
+  if(o)return{funny:hand||o.funny,spirit:o.spirit,biz:o.biz,shadow:o.shadow,act:o.act,jr:o.jr+" "+S.jq};
+  return{
+    funny:hand||(H.lead+" "+S.style+" Also, "+S.also.replace("{topic}",H.topic)),
+    spirit:H.sp+" "+S.spirit,
+    biz:H.bz+" "+S.biz,
+    shadow:H.sh+" "+S.shadow,
+    act:cap(H.ac+" "+S.act),
+    jr:H.jr+" "+S.jq
+  };
+}
+
+function planetInterp(pKey,sIdx,house){
+  var P=planetDef(pKey),S=SIGNS[sIdx],H=house?HOUSES[house-1]:null;
+  var aim=H?" Point it at "+H.short+".":"";
+  return{
+    funny:P.roast+" "+S.style+" Also, "+S.also.replace("{topic}",H?H.topic:P.area),
+    spirit:"Through "+P.t+", you are learning to "+S.spirit,
+    biz:P.biz+" "+S.biz+aim,
+    rel:"What people need from you here: "+S.client+" How you build trust: "+S.sales,
+    shadow:P.flaw+" In "+S.n+" terms, you can "+S.shadow,
+    act:P.fix+" This week: "+S.act
+  };
+}
+
+function roastPlanet(pKey,sIdx,house){
+  var P=planetDef(pKey),S=SIGNS[sIdx],H=house?HOUSES[house-1]:null;
+  return{
+    line:P.roast+" "+S.style+" Also, "+S.also.replace("{topic}",H?H.topic:P.area),
+    biz:P.biz+" "+S.biz+(H?" Aimed at "+H.t.toLowerCase()+", that is where this placement earns its keep.":""),
+    shadow:P.flaw,
+    act:P.fix
+  };
+}
+
+/* ---------- section routing ---------- */
+function go(id){
+  STATE.section=id;
+  $$(".section").forEach(function(s){s.classList.remove("on")});
+  $("#s-"+id).classList.add("on");
+  $$(".navtab").forEach(function(b){b.classList.toggle("on",b.dataset.go===id)});
+  window.scrollTo({top:0,behavior:"smooth"});
+  if(id==="dash")renderDash();
+}
+$$("[data-go]").forEach(function(b){b.addEventListener("click",function(){go(b.dataset.go)})});
+
+/* ---------- rising sign explorer ---------- */
+(function(){
+  var g=$("#signgrid");
+  g.innerHTML=SIGNS.map(function(s,i){
+    return '<div class="signchip" data-si="'+i+'"><div class="gly">'+s.gly+'</div><div class="nm">'+s.n+'</div><div class="el">'+s.el+'</div></div>';
+  }).join("");
+  $$(".signchip",g).forEach(function(c){
+    c.addEventListener("click",function(){
+      $$(".signchip",g).forEach(function(x){x.classList.remove("on")});
+      c.classList.add("on");
+      STATE.rising=parseInt(c.dataset.si,10);
+      if(!STATE.placements.length)STATE.source="rising";
+      renderRising();
+    });
+  });
+})();
+
+function risingHeadline(sIdx){
+  var S=SIGNS[sIdx],S7=SIGNS[(sIdx+6)%12],S10=SIGNS[(sIdx+9)%12];
+  return "You arrive "+S.style.replace(/\.$/,"")+", you attract clients who are "+S7.biz.replace(/\.$/,"")+", and the public version of your work is built "+S10.style.replace(/\.$/,"")+".";
+}
+
+function renderRising(){
+  var i=STATE.rising;if(i===null)return;
+  var S=SIGNS[i];
+  var cards=HOUSES.map(function(H,hi){
+    var si=houseSignFor(i,H.n),sg=SIGNS[si],x=houseInterp(hi,si);
+    return '<div class="housecard open" data-h="'+hi+'" data-s="'+si+'">'+
+      '<div class="hhead"><div class="hnum">'+H.n+'</div>'+
+      '<div class="htitle"><div class="t">'+H.t+'</div><div class="s">House '+H.n+'</div></div>'+
+      '<div class="hsign">'+sg.gly+' '+sg.n+'</div><div class="hcaret">\u25be</div></div>'+
+      '<div class="hbody">'+modeBlock(x,"h"+hi)+'</div></div>';
+  }).join("");
+
+  var globalModes=[["funny","Funny"],["spirit","Spiritual"],["biz","Business"],["shadow","Shadow"],["act","Action"],["jr","Journal"]];
+
+  $("#risingOut").innerHTML=
+    '<div class="card pad" style="margin-bottom:22px">'+
+      '<p class="kicker mint">'+S.gly+' '+S.n+' rising</p>'+
+      '<p class="headline">'+esc(risingHeadline(i))+'</p>'+
+      '<div style="margin-top:18px">'+
+        '<span class="chip mint">'+S.el+'</span><span class="chip">'+S.mod+'</span><span class="chip gold">Ruled by '+S.ruler+'</span>'+
+      '</div>'+
+      '<p style="margin-top:14px">'+esc(S.core)+'</p>'+
+      '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">'+
+        '<button class="btn sm ghost" id="copyRising">Copy my rising sign summary</button>'+
+        '<button class="btn sm ghost" id="copyAll12">Copy all twelve contradictions</button>'+
+        '<button class="btn sm ghost" data-go="paste">Get more personal, paste my chart \u2192</button>'+
+      '</div>'+
+    '</div>'+
+    '<p class="sectlabel">Your twelve house contradictions, all of them, no clicking required</p>'+
+    '<div class="card pad" style="padding:18px 20px;margin-bottom:14px">'+
+      '<p class="disc" style="margin-bottom:10px">Read every house in one voice. Switch the whole set at once.</p>'+
+      '<div class="modes" id="allModes" style="margin:0">'+globalModes.map(function(m,k){
+        return '<button class="mode'+(k===0?' on':'')+'" data-am="'+m[0]+'">'+m[1]+'</button>'}).join("")+
+      '</div>'+
+      '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">'+
+        '<button class="mode" id="collapseAll">Collapse all</button>'+
+        '<button class="mode" id="expandAll">Expand all</button>'+
+      '</div>'+
+    '</div>'+
+    '<div class="grid" style="gap:10px" id="houseGrid">'+cards+'</div>';
+
+  wireHouses();
+  wireModes($("#risingOut"));
+
+  $$("#allModes .mode").forEach(function(b){
+    b.addEventListener("click",function(){
+      $$("#allModes .mode").forEach(function(x){x.classList.remove("on")});
+      b.classList.add("on");
+      setAllModes(b.dataset.am);
+    });
+  });
+  $("#collapseAll").addEventListener("click",function(){$$("#houseGrid .housecard").forEach(function(c){c.classList.remove("open")})});
+  $("#expandAll").addEventListener("click",function(){$$("#houseGrid .housecard").forEach(function(c){c.classList.add("open")})});
+
+  $("#copyRising").addEventListener("click",function(){
+    copyText("My "+S.n+" rising, translated:\n\n"+risingHeadline(i)+"\n\nvia The Cosmic Operating System \u00b7 Spiritual Business Skool");
+  });
+  $("#copyAll12").addEventListener("click",function(){
+    var mode=($("#allModes .mode.on")||{dataset:{am:"funny"}}).dataset.am;
+    var lines=HOUSES.map(function(H,hi){
+      var si=houseSignFor(i,H.n),x=houseInterp(hi,si);
+      return H.n+". "+H.t+" \u00b7 "+SIGNS[si].n+"\n"+(x[mode]||x.funny);
+    }).join("\n\n");
+    copyText("My "+S.n+" rising, all twelve houses:\n\n"+lines+"\n\nvia The Cosmic Operating System \u00b7 Spiritual Business Skool");
+  });
+  $$("#risingOut [data-go]").forEach(function(b){b.addEventListener("click",function(){go(b.dataset.go)})});
+}
+
+function setAllModes(mode){
+  $$("#houseGrid .modewrap").forEach(function(w){
+    var data=JSON.parse(decodeURIComponent(w.dataset.payload));
+    $$(".mode",w).forEach(function(x){x.classList.toggle("on",x.dataset.m===mode)});
+    var v=data[mode]||"";
+    var isQuote=(mode==="funny"||mode==="jr");
+    $(".modebody",w).innerHTML=isQuote?'<span class="q">'+esc(v)+'</span>':esc(v);
+  });
+}
+
+function modeBlock(x,uid){
+  var modes=[["funny","Funny"],["spirit","Spiritual"],["biz","Business"],["shadow","Shadow"],["act","Action"],["jr","Journal"]];
+  var payload=encodeURIComponent(JSON.stringify(x));
+  return '<div class="modewrap" data-payload="'+payload+'">'+
+    '<div class="modes">'+modes.map(function(m,k){
+      return '<button class="mode'+(k===0?' on':'')+'" data-m="'+m[0]+'">'+m[1]+'</button>'}).join("")+'</div>'+
+    '<div class="modebody"><span class="q">'+esc(x.funny)+'</span></div></div>';
+}
+
+function wireModes(scope){
+  $$(".modewrap",scope||document).forEach(function(w){
+    if(w.dataset.wired)return;w.dataset.wired="1";
+    var data=JSON.parse(decodeURIComponent(w.dataset.payload));
+    $$(".mode",w).forEach(function(b){
+      b.addEventListener("click",function(e){
+        e.stopPropagation();
+        $$(".mode",w).forEach(function(x){x.classList.remove("on")});
+        b.classList.add("on");
+        var v=data[b.dataset.m]||"";
+        var isQuote=(b.dataset.m==="funny"||b.dataset.m==="jr");
+        $(".modebody",w).innerHTML=isQuote?'<span class="q">'+esc(v)+'</span>':esc(v);
+      });
+    });
+  });
+}
+
+function wireHouses(){
+  $$(".housecard").forEach(function(c){
+    var head=$(".hhead",c);
+    if(head.dataset.wired)return;head.dataset.wired="1";
+    head.addEventListener("click",function(){
+      c.classList.toggle("open");
+      if(c.classList.contains("open"))wireModes(c);
+    });
+  });
+}
+
+/* ---------- parser ---------- */
+var ALIASES=[
+ ["Sun",["sun"]],["Moon",["moon"]],["Mercury",["mercury"]],["Venus",["venus"]],["Mars",["mars"]],
+ ["Jupiter",["jupiter"]],["Saturn",["saturn"]],["Uranus",["uranus"]],["Neptune",["neptune"]],["Pluto",["pluto"]],
+ ["North Node",["north node","n node","nnode","true node","mean node","rahu"]],
+ ["South Node",["south node","s node","ketu"]],
+ ["Chiron",["chiron"]],["Lilith",["lilith","black moon"]],
+ ["Rising",["ascendant","rising","asc","ac sign"]],
+ ["Midheaven",["midheaven","medium coeli","mc"]]
+];
+function parseChart(raw){
+  var text=" "+String(raw).replace(/\r/g," ").replace(/[|;]/g,"\n")+" ";
+  var lc=text.toLowerCase();
+  /* break the blob into lines anchored on each body name */
+  var marks=[];
+  ALIASES.forEach(function(a){
+    a[1].forEach(function(al){
+      var re=new RegExp("(^|[^a-z])"+al.replace(/ /g,"\\s+")+"([^a-z]|$)","g"),m;
+      while((m=re.exec(lc))!==null){marks.push({at:m.index+m[1].length,key:a[0],len:al.length});re.lastIndex=m.index+1}
+    });
+  });
+  marks.sort(function(a,b){return a.at-b.at});
+  /* drop overlapping weaker matches, e.g. "mc" inside another word already handled by boundaries */
+  var segs=[],i;
+  for(i=0;i<marks.length;i++){
+    if(i>0&&marks[i].at-marks[i-1].at<3)continue;
+    var end=(i+1<marks.length)?marks[i+1].at:text.length;
+    segs.push({key:marks[i].key,txt:text.slice(marks[i].at,end)});
+  }
+  var found={},order=[];
+  segs.forEach(function(sg){
+    var t=sg.txt.toLowerCase(),si=-1,hs=null,j;
+    for(j=0;j<SIGNS.length;j++){
+      if(new RegExp("(^|[^a-z])"+SIGNS[j].n.toLowerCase()+"([^a-z]|$)").test(t)){si=j;break}
+    }
+    if(si<0)return;
+    var hm=t.match(/(\d{1,2})\s*(?:st|nd|rd|th)?\s*(?:house|h\b)/) || t.match(/house\s*(\d{1,2})/);
+    if(hm){var hv=parseInt(hm[1],10);if(hv>=1&&hv<=12)hs=hv}
+    if(sg.key==="Rising"||sg.key==="Midheaven")hs=(sg.key==="Rising")?1:null;
+    if(found[sg.key])return;
+    found[sg.key]={planet:sg.key,sign:si,house:hs};
+    order.push(sg.key);
+  });
+  /* house cusp table, e.g. "1st House in Libra 5\u00b048" or "House 10 Cancer" */
+  var cusps=null;
+  var cre=/(\d{1,2})\s*(?:st|nd|rd|th)?\s*house\s*(?:cusp)?\s*(?:in|:|-|=)?\s*([a-z]+)/gi, cm;
+  var cre2=/house\s*(\d{1,2})\s*(?:in|:|-|=)?\s*([a-z]+)/gi;
+  [cre,cre2].forEach(function(rx){
+    rx.lastIndex=0;
+    while((cm=rx.exec(text))!==null){
+      var hn=parseInt(cm[1],10),sx=signIdx(cm[2]);
+      if(hn>=1&&hn<=12&&sx>-1){if(!cusps)cusps=[null,null,null,null,null,null,null,null,null,null,null,null];
+        if(cusps[hn-1]===null)cusps[hn-1]=sx;}
+    }
+  });
+  /* the cusps give two placements outright, nothing invented */
+  if(cusps){
+    if(cusps[0]!==null&&!found["Rising"]){found["Rising"]={planet:"Rising",sign:cusps[0],house:1,derived:true}}
+    if(cusps[9]!==null&&!found["Midheaven"]){found["Midheaven"]={planet:"Midheaven",sign:cusps[9],house:null,derived:true}}
+  }
+  var list=[];
+  PLANETS.forEach(function(P){if(found[P.k])list.push(found[P.k])});
+  var wanted=["Sun","Moon","Rising","Mercury","Venus","Mars","Jupiter","Saturn","Midheaven"];
+  var missing=wanted.filter(function(k){return !found[k]});
+  return{list:list,missing:missing,cusps:cusps};
+}
+
+function getP(k){for(var i=0;i<STATE.placements.length;i++){if(STATE.placements[i].planet===k)return STATE.placements[i]}return null}
+function signOf(k){var p=getP(k);return p?SIGNS[p.sign]:null}
+
+/* ---------- paste flow ---------- */
+var SAMPLE="Sun 14° Gemini 10th House\nMoon 22° Taurus 8th House\nMercury 3° Gemini 10th House\nVenus 18° Scorpio 2nd House\nMars 7° Leo 11th House\nJupiter 2° Sagittarius 3rd House\nSaturn 25° Pisces 6th House\nPluto 19° Scorpio 2nd House\nNorth Node 9° Cancer 10th House\nChiron 4° Virgo 12th House\nAscendant 11° Libra\nMidheaven 14° Cancer";
+
+$("#sampleBtn").addEventListener("click",function(){$("#pasteBox").value=SAMPLE;toast("Sample chart loaded")});
+$("#clearBtn").addEventListener("click",function(){$("#pasteBox").value="";$("#foundOut").innerHTML=""});
+$("#decodeBtn").addEventListener("click",function(){
+  var raw=$("#pasteBox").value.trim();
+  if(!raw.length){
+    $("#foundOut").innerHTML='<p class="note">The cosmos is willing, but the box is empty. Paste your placements above, or try the sample chart.</p>';return;
+  }
+  var res=parseChart(raw);
+  if(!res.list.length&&!res.cusps){
+    $("#foundOut").innerHTML='<p class="note">The cosmos is willing, but this paste is a little scrambled. I could not confidently identify any placements. Two formats work well: planet lines like "Venus in Scorpio, 2nd house", or the house cusp table like "2nd House in Scorpio".</p>';return;
+  }
+  var rows=res.list.map(function(p){
+    var P=planetDef(p.planet);
+    return '<div class="frow ok"><span class="ic">✓</span><span><b style="color:#fff">'+P.k+'</b> in '+SIGNS[p.sign].n+(p.house&&p.planet!=="Rising"?', '+p.house+ordinal(p.house)+' house':'')+'</span></div>';
+  }).join("");
+  var cuspRow="";
+  if(res.cusps){
+    var filled=res.cusps.filter(function(c){return c!==null}).length;
+    cuspRow='<p class="sectlabel" style="margin-top:16px">Your house cusps ('+filled+' found)</p><div>'+
+      res.cusps.map(function(c,i){return c===null?"":'<span class="chip mint">'+(i+1)+ordinal(i+1)+' '+SIGNS[c].n+'</span>'}).join("")+'</div>'+
+      '<p class="disc" style="margin-top:6px">Your rising sign and Midheaven come straight from the 1st and 10th cusps, so they are read as real placements, not guesses.</p>';
+  }
+  var miss=res.missing.length?'<p class="sectlabel" style="margin-top:16px">I could not confidently identify</p>'+
+    res.missing.map(function(k){return '<div class="frow miss"><span class="ic">?</span><span>'+k+'</span></div>'}).join(""):"";
+  $("#foundOut").innerHTML=(rows?'<p class="sectlabel">I found</p>'+rows:"")+cuspRow+miss+
+    '<p class="disc" style="margin-top:14px">Nothing is invented. Anything missing is simply left out of your reading.</p>'+
+    '<button class="btn sm" id="useFound" style="margin-top:14px">Use what I found ✦</button>';
+  $("#useFound").addEventListener("click",function(){
+    STATE.placements=res.list;STATE.source="chart";STATE.cusps=res.cusps;
+    var r=getP("Rising");if(r)STATE.rising=r.sign;
+    if(STATE.rising!==null){
+      var chips=$$(".signchip");chips.forEach(function(x){x.classList.remove("on")});
+      if(chips[STATE.rising])chips[STATE.rising].classList.add("on");
+      renderRising();
+    }
+    go("dash");
+  });
+});
+function ordinal(n){var s=["th","st","nd","rd"],v=n%100;return s[(v-20)%10]||s[v]||s[0]}
+
+/* ---------- themes, archetype, reading ---------- */
+function elementTally(){
+  var t={Fire:0,Earth:0,Air:0,Water:0},m={Cardinal:0,Fixed:0,Mutable:0};
+  STATE.placements.forEach(function(p){t[SIGNS[p.sign].el]++;m[SIGNS[p.sign].mod]++});
+  if(!STATE.placements.length&&STATE.rising!==null){t[SIGNS[STATE.rising].el]++;m[SIGNS[STATE.rising].mod]++}
+  return{el:t,mod:m};
+}
+function topKey(o){var best=null;for(var k in o){if(best===null||o[k]>o[best])best=k}return best}
+
+function themes(){
+  var out=[],t=elementTally(),el=t.el,md=t.mod;
+  var housesUsed={};STATE.placements.forEach(function(p){if(p.house)housesUsed[p.house]=(housesUsed[p.house]||0)+1});
+  if(el.Water>=2&&el.Air>=2)out.push({t:"Depth versus clarity",d:"You feel it all and then translate almost none of it. The work is saying the simple version out loud."});
+  if(el.Fire>=2&&el.Earth>=2)out.push({t:"Speed versus staying power",d:"You start hot and then need the structure to catch up. Build the container before the next launch."});
+  if((housesUsed[10]||0)+(housesUsed[1]||0)>=2)out.push({t:"Visibility versus privacy",d:"You are built to be seen and you would also like to be left alone. Both are true, so design the boundary rather than the retreat."});
+  if((housesUsed[2]||0)+(housesUsed[8]||0)>=2)out.push({t:"Worth versus control",d:"Money in your chart is not a numbers problem, it is a trust problem. Name the price, then let people respond."});
+  if((housesUsed[6]||0)+(housesUsed[12]||0)>=2)out.push({t:"Service versus overwork",d:"You will keep giving until something forces you to stop. Rest is a system, not a reward."});
+  if((housesUsed[5]||0)+(housesUsed[3]||0)>=2)out.push({t:"Creativity versus perfectionism",d:"Your best work is the unpolished version you almost deleted. Publish the rough one."});
+  if((housesUsed[11]||0)+(housesUsed[7]||0)>=2)out.push({t:"Community versus your own goal",d:"You hold everyone else's vision beautifully. Put yours back on the calendar."});
+  if(md.Mutable>=3)out.push({t:"Freedom versus consistency",d:"You adapt so well that you rarely repeat anything long enough for it to compound. Pick one thing and bore yourself with it."});
+  if(md.Fixed>=3)out.push({t:"Conviction versus updating",d:"Your certainty is an asset until the data changes. Schedule a quarterly willingness to be wrong."});
+  if(out.length<3&&(STATE.rising!==null||STATE.cusps)){
+    var s10=wheelSign(10),s2=wheelSign(2),s6=wheelSign(6),s11=wheelSign(11);
+    var wheelThemes=[];
+    if(s10)wheelThemes.push({t:"Visibility versus privacy",d:"With "+s10.n+" on your 10th house, your public work wants to be "+s10.biz+" The question is whether you are letting it be that."});
+    if(s2)wheelThemes.push({t:"Worth versus comfort",d:s2.n+" runs your 2nd house, so money gets handled "+s2.style+" Price the outcome, not the hour."});
+    if(s6)wheelThemes.push({t:"Structure versus energy",d:s6.n+" runs your 6th house, so your systems need to be "+s6.biz+" Build the week for that person, not an imaginary one."});
+    if(s11)wheelThemes.push({t:"Community versus your own goal",d:s11.n+" runs your 11th house, so your audience grows when the experience is "+s11.biz});
+    var have={};out.forEach(function(o){have[o.t]=1});
+    wheelThemes.forEach(function(t){if(out.length<3&&!have[t.t])out.push(t)});
+  }
+  if(!out.length)out.push({t:"Meaning versus momentum",d:"You want the work to matter and to move. It can do both once you choose one direction for ninety days."});
+  return out.slice(0,3);
+}
+
+function archetype(){
+  var t=elementTally(),el=topKey(t.el),md=topKey(t.mod);
+  var byEl=ARCHETYPES.filter(function(a){return a.el===el})[0];
+  var byMd=ARCHETYPES.filter(function(a){return a.el===md})[0];
+  var pick=byEl||byMd||ARCHETYPES[0];
+  var why=pick.why+(byMd&&byEl&&byMd!==byEl?" Your "+md.toLowerCase()+" streak adds the rest: "+byMd.why.split(", so ")[1]:"");
+  return{n:pick.n,why:why};
+}
+
+function wheelSign(hn){if(STATE.cusps&&STATE.cusps[hn-1]!==null)return SIGNS[STATE.cusps[hn-1]];
+  return STATE.rising!==null?SIGNS[houseSignFor(STATE.rising,hn)]:null}
+
+function readingSections(){
+  var sun=signOf("Sun"),moon=signOf("Moon"),ris=signOf("Rising")||(STATE.rising!==null?SIGNS[STATE.rising]:null),
+      mer=signOf("Mercury")||wheelSign(3),ven=signOf("Venus")||wheelSign(2),mar=signOf("Mars")||wheelSign(7),
+      mc=signOf("Midheaven")||wheelSign(10),sat=signOf("Saturn"),cl=signOf("Moon")||wheelSign(7);
+  var base=sun||ris||moon;if(!base)return[];
+  var a=archetype();
+  var out=[];
+  out.push({l:"Your business in one sentence",t:"You are here to "+base.purpose+", in a way that is "+(ris||base).biz});
+  out.push({l:"Your natural gift",t:(sun||base).gift+" That is the part you undercharge for because it feels like nothing."});
+  out.push({l:"Your visibility style",t:(ris||base).vis+(mc?" Publicly, your work wants to be known as "+mc.biz:"")});
+  out.push({l:"Your content style",t:(mer||base).cont});
+  out.push({l:"Your sales style",t:(mar||ven||base).sales});
+  out.push({l:"Your money lesson",t:(ven||base).money+(sat?" Saturn in "+sat.n+" adds the rule: "+sat.act:"")});
+  out.push({l:"Your ideal client experience",t:"People need "+(cl||ris||base).client+" Give them that in the first five minutes and the rest of the sale is a formality."});
+  out.push({l:"Your shadow pattern",t:"You can "+(sun||base).shadow+(moon?" Under pressure, you also "+moon.shadow:"")});
+  out.push({l:"Your business archetype",t:a.n+". "+a.why});
+  out.push({l:"Your next cosmic business move",t:cap((mar||sun||base).act)});
+  out.push({l:"Your affectionate roast",t:(ris||base).roast+" "+((sun&&sun!==ris)?sun.roast+" ":"")+"A reasonable set of goals, provided you eventually press publish."});
+  return out;
+}
+
+function cosmicHeadline(){
+  var sun=signOf("Sun"),moon=signOf("Moon"),ris=signOf("Rising")||(STATE.rising!==null?SIGNS[STATE.rising]:null);
+  if(!sun&&!moon&&!ris)return "";
+  if(!sun&&!moon&&STATE.rising!==null)return risingHeadline(STATE.rising);
+  var bits=[];
+  if(ris)bits.push(cap(ris.vis.split(".")[0]));
+  if(moon)bits.push("privately needing "+moon.client.replace(/\.$/,""));
+  if(sun)bits.push("and quietly here to "+sun.purpose);
+  return bits.join(", ")+".";
+}
+
+/* ---------- dashboard ---------- */
+function renderDash(){
+  var out=$("#dashOut");
+  if(!STATE.placements.length&&STATE.rising===null&&!STATE.cusps){
+    out.innerHTML='<p class="kicker">Your reading</p><h2>Nothing decoded <em class="g">yet</em>.</h2>'+
+      '<p class="lead">Choose a rising sign or paste your placements and your reading appears here.</p>'+
+      '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">'+
+      '<button class="btn sm" data-go="rising">Choose a rising sign</button>'+
+      '<button class="btn sm ghost" data-go="paste">Paste my placements</button></div>';
+    $$("#dashOut [data-go]").forEach(function(b){b.addEventListener("click",function(){go(b.dataset.go)})});
+    return;
+  }
+  var partial=STATE.placements.length<4;
+  var focusSel='<select id="focusSel"><option value="">Whole chart, no particular focus</option>'+
+    FOCUSES.map(function(f){return '<option value="'+f.k+'"'+(STATE.focus===f.k?' selected':'')+'>'+f.n+'</option>'}).join("")+'</select>';
+  var focusNote="";
+  if(STATE.focus){var F=FOCUSES.filter(function(f){return f.k===STATE.focus})[0];if(F)focusNote='<p class="note">'+F.note+' Reading in this order: '+F.em.join(", ")+'.</p>'}
+
+  var cards=orderedPlacements().map(function(p){
+    var P=planetDef(p.planet),S=SIGNS[p.sign],x=planetInterp(p.planet,p.sign,p.house);
+    var modes=[["funny","Funny"],["spirit","Spiritual"],["biz","Business"],["rel","Relationships"],["shadow","Shadow"],["act","Action"]];
+    var payload=encodeURIComponent(JSON.stringify(x));
+    return '<div class="pcard modewrap" data-payload="'+payload+'">'+
+      '<div class="ph"><span class="pg">'+P.gly+'</span><span class="pn">'+P.k+' in '+S.n+'</span></div>'+
+      '<div class="pp">'+(p.house&&p.planet!=="Rising"?p.house+ordinal(p.house)+" house · ":"")+P.t+'</div>'+
+      '<div class="modes">'+modes.map(function(m,k){return '<button class="mode'+(k===0?' on':'')+'" data-m="'+m[0]+'">'+m[1]+'</button>'}).join("")+'</div>'+
+      '<div class="modebody"><span class="q">'+esc(x.funny)+'</span></div></div>';
+  }).join("");
+
+  var th=themes(),a=archetype(),rs=readingSections(),hl=cosmicHeadline();
+
+  out.innerHTML=
+    '<p class="kicker">'+(STATE.source==="chart"?"Your personalized reading":"Your rising sign reading")+'</p>'+
+    '<h2>The Cosmic <em class="g">Read</em></h2>'+
+    (hl?'<div class="card pad" style="margin:20px 0"><p class="sectlabel">Cosmic headline</p><p class="headline">'+esc(hl)+'</p></div>':'')+
+    (partial&&STATE.source==="chart"?'<p class="note">This is a partial reading, built only from the placements you gave me. Add more and it gets sharper.</p>':'')+
+    '<div class="grid g2" style="margin:18px 0">'+
+      '<div class="card"><p class="sectlabel">Focus this reading</p>'+focusSel+focusNote+'</div>'+
+      '<div class="card"><p class="sectlabel">Cosmic pattern recognition</p>'+
+        '<div class="meter"><span>Pattern recognition</span><b>Highly suspicious</b></div>'+
+        '<div class="meter"><span>Potential for dramatic self recognition</span><b>Elevated</b></div>'+
+        '<div class="meter" style="border:0"><span>Placements decoded</span><b>'+(STATE.placements.length||12)+'</b></div>'+
+        '<div class="bar"><i style="width:'+Math.min(100,(STATE.placements.length||12)*8)+'%"></i></div>'+
+        '<p class="disc" style="margin-top:12px">Not a scientific accuracy score. Obviously.</p>'+
+      '</div>'+
+    '</div>'+
+    (cards?'<p class="sectlabel" style="margin-top:26px">Your placements, six ways</p><div class="grid g2">'+cards+'</div>':'')+
+    houseSection()+
+    '<p class="sectlabel" style="margin-top:30px">Dominant themes</p>'+
+    '<div class="grid g3">'+th.map(function(t){
+      return '<div class="card"><h3 style="font-size:18px">'+esc(t.t)+'</h3><p style="font-size:14.5px;margin:0">'+esc(t.d)+'</p></div>'}).join("")+'</div>'+
+    '<div class="arch" style="margin-top:26px"><p class="kicker mint">Your business archetype</p>'+
+      '<div class="an">'+esc(a.n)+'</div><p style="margin:0">'+esc(a.why)+'</p></div>'+
+    '<div class="card pad" style="margin-top:26px">'+
+      '<p class="sectlabel">Your spiritual business reading</p>'+
+      rs.map(function(r){return '<div class="readsec"><div class="rl">'+r.l+'</div><div class="rt">'+esc(r.t)+'</div></div>'}).join("")+
+    '</div>'+
+    askBlock()+
+    '<div class="card pad" style="margin-top:26px"><p class="sectlabel">Take it with you</p>'+
+      '<p style="font-size:14.5px">Nothing here includes your birth date, birth time, or location. Share freely.</p>'+
+      '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">'+
+        '<button class="btn sm ghost" data-copy="three">Copy my three sentence reading</button>'+
+        '<button class="btn sm ghost" data-copy="roast">Copy my affectionate roast</button>'+
+        '<button class="btn sm ghost" data-copy="move">Copy my next business move</button>'+
+        '<button class="btn sm ghost" data-copy="caption">Make this caption worthy</button>'+
+        '<button class="btn sm ghost" data-copy="client">Create a client safe version</button>'+
+        '<button class="btn sm ghost" data-copy="reset">Start over</button>'+
+      '</div></div>';
+
+  wireModes(out);
+  wireHouses();
+  $("#focusSel").addEventListener("change",function(){STATE.focus=this.value;renderDash()});
+  wireAsk();
+  $$("[data-copy]",out).forEach(function(b){b.addEventListener("click",function(){shareAction(b.dataset.copy,rs,a)})});
+}
+
+function houseSection(){
+  if(STATE.rising===null&&!STATE.cusps)return "";
+  var src=STATE.cusps?"straight from your chart":"using Whole Sign houses from your rising sign";
+  var cards=HOUSES.map(function(H,hi){
+    var sg=wheelSign(H.n);if(!sg)return "";
+    var si=signIdx(sg.n),x=houseInterp(hi,si);
+    return '<div class="housecard open">'+
+      '<div class="hhead"><div class="hnum">'+H.n+'</div>'+
+      '<div class="htitle"><div class="t">'+H.t+'</div><div class="s">House '+H.n+'</div></div>'+
+      '<div class="hsign">'+sg.gly+' '+sg.n+'</div><div class="hcaret">\u25be</div></div>'+
+      '<div class="hbody">'+modeBlock(x,"d"+hi)+'</div></div>';
+  }).join("");
+  if(!cards)return "";
+  return '<p class="sectlabel" style="margin-top:30px">Your twelve houses, '+src+'</p>'+
+    '<div class="grid" style="gap:10px">'+cards+'</div>';
+}
+
+function orderedPlacements(){
+  var list=STATE.placements.slice();
+  if(!list.length&&STATE.rising!==null)list=[{planet:"Rising",sign:STATE.rising,house:1}];
+  if(!STATE.focus)return list;
+  var F=FOCUSES.filter(function(f){return f.k===STATE.focus})[0];
+  if(!F)return list;
+  return list.slice().sort(function(x,y){
+    var a=F.em.indexOf(x.planet),b=F.em.indexOf(y.planet);
+    if(a<0)a=99;if(b<0)b=99;return a-b;
+  });
+}
+
+/* ---------- ask the chart ---------- */
+var QUESTIONS=[
+{q:"Why am I avoiding visibility right now?",fn:function(){
+  var r=signOf("Rising")||(STATE.rising!==null?SIGNS[STATE.rising]:null),s=signOf("Sun");
+  var k=r||s;if(!k)return "Add your rising sign or Sun and ask again.";
+  return "Because "+k.shadow+" The fix is not more confidence, it is a smaller public action. This week: "+k.act;}},
+{q:"Should I raise my prices?",fn:function(){
+  var v=signOf("Venus")||signOf("Sun")||signOf("Rising");if(!v)return "Add Venus, or your Sun, and ask again.";
+  return "Your money pattern: "+v.money+" So yes, most likely, and the real work is the sentence you say afterward without apologizing. "+cap(v.act);}},
+{q:"What kind of content should I actually make?",fn:function(){
+  var m=signOf("Mercury")||signOf("Sun")||signOf("Rising");if(!m)return "Add Mercury, or your Sun, and ask again.";
+  return m.cont+" Do that format for thirty days before you judge whether it works.";}},
+{q:"Why do I keep starting over?",fn:function(){
+  var t=elementTally(),md=topKey(t.mod);
+  if(md==="Mutable")return "Mutable energy is loud in your chart. You adapt so fluently that you rarely stay long enough for anything to compound. Choose one offer and one channel, and give them ninety unglamorous days.";
+  if(md==="Cardinal")return "Cardinal energy is loud in your chart. You are built to start, which is why the middle feels like punishment. Hand off or systemize the middle, do not keep restarting the beginning.";
+  return "Fixed energy is loud in your chart, so this is less about restarting and more about refusing to update. The next version is not a betrayal of the last one.";}},
+{q:"What should I sell next?",fn:function(){
+  var s=signOf("Sun")||signOf("Rising"),v=signOf("Venus");
+  if(!s)return "Add your Sun or rising sign and ask again.";
+  return "Sell the thing that lets you "+s.purpose+". Package it so it feels "+(v||s).biz+" Name the transformation in the title, not the format.";}},
+{q:"How do I stop burning out?",fn:function(){
+  var m=signOf("Moon")||signOf("Rising")||signOf("Sun");if(!m)return "Add your Moon and ask again.";
+  return "Your Moon needs "+m.client+" Build the week around that instead of around your most productive day ever. "+cap(m.act);}},
+{q:"What is my unfair advantage?",fn:function(){
+  var s=signOf("Sun")||signOf("Rising");if(!s)return "Add your Sun or rising sign and ask again.";
+  return s.gift+" You think it is obvious. It is not obvious, it is your positioning.";}}
+];
+function askBlock(){
+  return '<div class="card pad" style="margin-top:26px"><p class="sectlabel">Ask the chart</p>'+
+    '<p style="font-size:14.5px">Pick the question you are actually sitting with. The answer is built from your placements only.</p>'+
+    '<div id="askBtns" style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 6px">'+
+      QUESTIONS.map(function(q,i){return '<button class="mode" data-q="'+i+'">'+esc(q.q)+'</button>'}).join("")+
+    '</div><div id="askOut" class="modebody" style="margin-top:10px"></div></div>';
+}
+function wireAsk(){
+  $$("#askBtns .mode").forEach(function(b){
+    b.addEventListener("click",function(){
+      $$("#askBtns .mode").forEach(function(x){x.classList.remove("on")});
+      b.classList.add("on");
+      $("#askOut").innerHTML='<span class="q">'+esc(QUESTIONS[b.dataset.q].q)+'</span>'+esc(QUESTIONS[b.dataset.q].fn());
+    });
+  });
+}
+
+/* ---------- share ---------- */
+function shareAction(kind,rs,a){
+  function sec(l){for(var i=0;i<rs.length;i++){if(rs[i].l===l)return rs[i].t}return ""}
+  var tag="\n\nvia The Cosmic Operating System · Spiritual Business Skool";
+  if(kind==="reset"){
+    STATE={rising:null,placements:[],cusps:null,focus:"",mode:"funny",section:"home",source:null};
+    $("#pasteBox").value="";$("#foundOut").innerHTML="";$("#risingOut").innerHTML="";
+    $$(".signchip").forEach(function(c){c.classList.remove("on")});
+    go("home");toast("Cleared. Start fresh ✦");return;
+  }
+  if(kind==="three")copyText("My cosmic business summary:\n\n"+sec("Your business in one sentence")+"\n\nMy gift: "+sec("Your natural gift")+"\n\nMy next move: "+sec("Your next cosmic business move")+tag);
+  if(kind==="roast")copyText(sec("Your affectionate roast")+tag);
+  if(kind==="move")copyText("My next cosmic business move:\n\n"+sec("Your next cosmic business move")+tag);
+  if(kind==="caption")copyText(sec("Your affectionate roast")+"\n\nThe actual takeaway: "+sec("Your next cosmic business move")+"\n\nIf your chart just called you out too, say which placement did it."+tag);
+  if(kind==="client")copyText("Archetype: "+a.n+"\n\n"+sec("Your business in one sentence")+"\n\nStrength: "+sec("Your natural gift")+"\n\nGrowth edge: "+sec("Your shadow pattern")+"\n\nNext step: "+sec("Your next cosmic business move")+tag);
+}
+
+/* ---------- roast section ---------- */
+(function(){
+  $("#rPlanet").innerHTML=PLANETS.map(function(p){return '<option value="'+p.k+'">'+p.gly+' '+p.k+'</option>'}).join("");
+  $("#rSign").innerHTML=SIGNS.map(function(s,i){return '<option value="'+i+'">'+s.gly+' '+s.n+'</option>'}).join("");
+  $("#rHouse").innerHTML='<option value="">House unknown</option>'+HOUSES.map(function(h){return '<option value="'+h.n+'">'+h.n+ordinal(h.n)+' house · '+h.t+'</option>'}).join("");
+  $("#rPlanet").value="Venus";$("#rSign").value="7";$("#rHouse").value="2";
+  function run(){
+    var r=roastPlanet($("#rPlanet").value,parseInt($("#rSign").value,10),$("#rHouse").value?parseInt($("#rHouse").value,10):null);
+    $("#roastOut").innerHTML=
+      '<div class="modebody"><span class="q">'+esc(r.line)+'</span></div>'+
+      '<div class="readsec"><div class="rl">Business translation</div><div class="rt">'+esc(r.biz)+'</div></div>'+
+      '<div class="readsec"><div class="rl">The shadow</div><div class="rt">'+esc(r.shadow)+'</div></div>'+
+      '<div class="readsec" style="border:0"><div class="rl">Practical move</div><div class="rt">'+esc(r.act)+'</div></div>'+
+      '<button class="btn sm ghost" id="copyRoast" style="margin-top:14px">Copy this roast</button>';
+    $("#copyRoast").addEventListener("click",function(){copyText(r.line+"\n\nBusiness translation: "+r.biz+"\n\nvia The Cosmic Operating System · Spiritual Business Skool")});
+  }
+  $("#rGo").addEventListener("click",run);
+  ["rPlanet","rSign","rHouse"].forEach(function(id){$("#"+id).addEventListener("change",run)});
+  run();
+})();
+
+/* ---------- cheat sheet ---------- */
+var CS="signs";
+function csHTML(tab,q){
+  function match(){for(var i=0;i<arguments.length;i++){if(String(arguments[i]).toLowerCase().indexOf(q)>-1)return true}return !q}
+  if(tab==="signs"){
+    return SIGNS.filter(function(s){return match(s.n,s.el,s.mod,s.ruler,s.core,s.gift,s.roast,s.strengths,s.stress)}).map(function(s){
+      return entry(s.gly,s.n,s.el+" \u00b7 "+s.mod,[
+        ["Ruler",s.ruler],["Core energy",s.core],["Strengths",s.strengths],["Stress pattern",s.stress],
+        ["Business gift",s.gift],["Cosmic roast",s.roast],["Best question to ask",s.asks]]);
+    }).join("");
+  }
+  if(tab==="houses"){
+    return HOUSES.filter(function(h){return match(h.t,h.plain,h.biz,h.spirit,h.flaw,"house "+h.n)}).map(function(h){
+      return entry(String(h.n),h.t,"House "+h.n,[
+        ["Plain language",h.plain],["Spiritual meaning",h.spirit],["Business meaning",h.biz],
+        ["Common shadow",h.flaw],["Reflection question",h.refl]]);
+    }).join("");
+  }
+  if(tab==="planets"){
+    return PLANETS.filter(function(p){return match(p.k,p.rep,p.t,p.area,p.flaw)}).map(function(p){
+      return entry(p.gly,p.k,p.t,[
+        ["What it represents",p.rep],
+        ["How it works in a sign","The sign sets the style. Fire signs make it fast and expressive, earth signs make it practical and slow, air signs make it mental and social, water signs make it felt and private."],
+        ["How it works in a house","The house sets the arena. Wherever this planet sits is where "+p.area+" becomes a running theme in your business."],
+        ["Shadow expression",p.flaw],["Practical integration",p.fix]]);
+    }).join("");
+  }
+  return VOCAB.filter(function(v){return match(v.k,v.v)}).map(function(v){
+    return entry("\u2726",v.k,"",[["Meaning",v.v]]);
+  }).join("");
+}
+function renderCS(){
+  var q=($("#csSearch").value||"").toLowerCase();
+  var html=csHTML(CS,q);
+  if(!html&&q){
+    var hit=null;
+    ["signs","houses","planets","vocab"].forEach(function(tab){
+      if(hit||tab===CS)return;
+      var probe=csHTML(tab,q);if(probe)hit={tab:tab,html:probe};
+    });
+    if(hit)html='<p class="note">Nothing under '+CS+' matched that, so here is what turned up under '+hit.tab+'.</p>'+hit.html;
+  }
+  $("#csOut").innerHTML=html||'<p class="note">Nothing matches that search. Try a sign, a house number, or a planet.</p>';
+  $$(".entry .eh").forEach(function(h){h.addEventListener("click",function(){h.parentNode.classList.toggle("open")})});
+}
+function entry(gly,name,meta,rows){
+  return '<div class="entry"><div class="eh"><span class="eg">'+gly+'</span><span class="en">'+esc(name)+'</span><span class="em2">'+esc(meta)+'</span><span class="hcaret">▾</span></div>'+
+    '<div class="eb">'+rows.map(function(r){return '<div class="kv"><b>'+esc(r[0])+'</b>'+esc(r[1])+'</div>'}).join("")+'</div></div>';
+}
+$$("[data-cs]").forEach(function(b){b.addEventListener("click",function(){
+  $$("[data-cs]").forEach(function(x){x.classList.remove("on")});b.classList.add("on");CS=b.dataset.cs;renderCS();
+})});
+$("#csSearch").addEventListener("input",renderCS);
+renderCS();
+
+</script>
+</body>
+</html>
